@@ -14,7 +14,7 @@
   perspective: 300px;
   background-color: white;
   border-radius: 6px;
-  box-shadow: 0 0 16px 0 rgba(244,248,255,0.5);    
+  box-shadow: 0 0 16px 0 rgba(244, 248, 255, 0.5);
 }
 
 .colon {
@@ -34,7 +34,9 @@
   background-color: white;
 }
 
-.colon span:last-of-type { margin-bottom: 0; }
+.colon span:last-of-type {
+  margin-bottom: 0;
+}
 
 .flipUnitContainer .unit {
   padding-top: 8px;
@@ -56,8 +58,12 @@
   text-align: center;
 }
 
-.airdropDetails:first-of-type div { padding-left: 7px;}
-.airdropDetails:last-of-type div { padding-left: 17px;}
+.airdropDetails:first-of-type div {
+  padding-left: 7px;
+}
+.airdropDetails:last-of-type div {
+  padding-left: 17px;
+}
 
 .upperCard,
 .lowerCard {
@@ -72,9 +78,9 @@
 .upperCard span,
 .lowerCard span {
   font-size: 2.5em;
-  font-family: "MuliSemiBold";
+  font-family: 'MuliSemiBold';
   font-weight: lighter;
-  color: "primary.main";
+  color: 'primary.main';
 }
 
 .upperCard {
@@ -113,7 +119,7 @@
   /* font-family: "Muli"; */
   font-size: 2.5em;
   font-weight: lighter;
-  color:"primary.main";
+  color: 'primary.main';
 }
 .flipCard.unfold {
   font-family: 'MuliSemiBold';
@@ -171,4 +177,23 @@
   100% {
     transform: rotateX(0deg);
   }
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 480px) {
+  .flipUnitContainer {
+    width: 40px;
+    height: 40px;
+  }
+
+  .upperCard span,
+  .lowerCard span {
+    font-size: 14px;
+  }
+
+  .flipCard span { font-size: 14px }
+  .colon { margin: 0 15px }
+  .flipUnitContainer .unit { font-size: 12px }
+  .flipCard.unfold span { transform: translateY(-59%) }
 }

@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import styles from './styles';
 import WarningIcon from '@mui/icons-material/Warning';
 import { makeStyles } from '@mui/styles';
+import InfoIcon from '@mui/icons-material/Info';
 
 const useStyles = makeStyles(styles);
 
@@ -15,7 +16,7 @@ const SnetAlert = ({ error, type = 'error' }) => {
       case 'success':
         return classes.successMsg;
       case 'info':
-        return classes.pandingMsg;
+        return classes.pendingMsg;
       default:
         return {};
     }
@@ -24,6 +25,8 @@ const SnetAlert = ({ error, type = 'error' }) => {
   const icon = useMemo(() => {
     if (type === 'error') {
       return <WarningIcon sx={{ color: 'alertMsg.main' }} />;
+    } else if (type === 'info') {
+      return <InfoIcon color="primary" />;
     }
     return false;
   }, [type]);

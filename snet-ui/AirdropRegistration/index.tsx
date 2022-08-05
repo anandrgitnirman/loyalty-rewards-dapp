@@ -42,6 +42,8 @@ type HistoryEvent = {
   window: string;
   reward: string;
   status: string;
+  action_type: string;
+  txn_hash: string;
 };
 
 type StakeInfo = {
@@ -370,6 +372,7 @@ export default function AirdropRegistration({
                 </Box>
               ) : null}
               <Box
+                className={classes.claimOrMapBtnContainer}
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -405,7 +408,7 @@ export default function AirdropRegistration({
                       width: 366,
                       fontWeight: 600,
                     }}
-                    onClick={handleMapCardanoWallet}
+                    onClick={toggleWalletConnectModal}
                     disabled={userEligibility === UserEligibility.NOT_ELIGIBLE}
                   >
                     MAP CARDANO WALLET
@@ -426,16 +429,8 @@ export default function AirdropRegistration({
               </Box>
               {cardanoWalletAddress ? (
                 <Box display="flex" justifyContent="center">
-                  <Box
-                    className={classes.claimedContainer}
-                    px={3}
-                    py={2}
-                    m={5}
-                    border={1}
-                    borderLeft={0}
-                    borderRight={0}
-                  >
-                    <Typography color="text.secondary" fontSize="14px">
+                  <Box className={classes.claimedContainer}>
+                    <Typography fontFamily="MuliRegular" color="text.secondary" fontSize="14px">
                       Airdrop Windows Claimed
                     </Typography>
                     <Typography fontFamily="MuliSemiBold" color="text.secondary" fontSize="24px" fontWeight="600">
@@ -450,18 +445,7 @@ export default function AirdropRegistration({
                     Your Airdrop History
                   </Typography>
                   <Box display={'flex'} justifyContent={'center'} mt={2}>
-                    <Grid
-                      xs={9}
-                      justifyContent="space-between"
-                      sx={{
-                        bgcolor: 'bgHighlight.main',
-                        borderRadius: '2px',
-                        px: 3,
-                        py: 2,
-                        height: 52,
-                        display: 'flex',
-                      }}
-                    >
+                    <Grid className={classes.mappedWalletDateTimeContainer} xs={9}>
                       <Typography color="textAdvanced.dark" fontSize={14} fontWeight={600}>
                         Cardano Wallet Mapped
                       </Typography>

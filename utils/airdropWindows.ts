@@ -37,7 +37,7 @@ export const AIRDROP_TOKEN_SYMBOL = 'AGIX';
 export const AIRDROP_SITE_STRING = 'SingularityNet';
 export const AIRDROP_PENDING_CLAIM_STRING = 'There is already a pending claim. Please wait for it to complete';
 export const AIRDROP_WINDOW_STRING = 'Airdrop Window';
-export const AIRDROP_SCHEDULE_STRING = 'Loyality Rewards Schedule';
+export const AIRDROP_SCHEDULE_STRING = 'Airdrop Schedule';
 export const AIRDROP_SUPPORT_QUERY_STRING = 'Loyality Airdrop Support Enquiry';
 export const TOTAL_AIRDROP_TOKENS_STRING = 'Total Airdrop Tokens';
 export const TOTAL_AIRDROPS_STRING = 'Airdrops';
@@ -48,11 +48,12 @@ export const AIRDROP_ELIGIBILITY_STRING = 'Airdrop Status';
 export const AIRDROP_NOT_QUALIFIED_STRING = 'Not Qualified';
 export const AIRDROP_WINDOW_INELIGIBILITY_STRING = 'Sorry, You are not qualified for airdrop window ';
 export const AIRDROP_CHECK_RULES_SCHEDULE = 'Please check the rules and schedule for the next window.';
-export const AIRDROP_HOW_IT_WORKS_STRING = 'How Loyality Rewards works';
+export const AIRDROP_HOW_IT_WORKS_STRING = 'How Loyality Rewards Works';
 export const AIRDROP_TITLE_STRING = 'Loyality Rewards Info:';
 export const AIRDROP_DESCRIPTION_STRING =
   'During the first year of Phase Two, 5% of the monthly tranches will be allotted to Phase One AGI (ERC-20) token holders ' +
   'as a reward for loyality and to incentivize participation in the Phase II network.';
+export const AIRDROP_CLAIM_IN_PROGRESS_STRING = 'Your Claim is in progress';
 
 export const AIRDROP_LINKS = {
   WEBSITE: 'https://singularitynet.io/',
@@ -99,6 +100,21 @@ export const HOW_IT_WORKS = [
       'You must claim your tokens before November 22th 2022 11 AM UTC; any tokens not claimed by ' +
       'then will be returned to the loyality pool',
   },
+  {
+    title: 'Requirements for Loyality rewards',
+    description:
+      'Users will be eligible for the airdrop if they meet two conditions: they must hold a minimum of 2500 ' +
+      'AGIX tokens in their wallets at all times during the snapshot periods, and they must register their ' +
+      'wallet address here in this portal during every registration period. Registration does not cost gas fees, claiming the rewards does cost gas fees.',
+  },
+  {
+    title: 'Claiming Rewards',
+    description:
+      'You can claim your Loyality rewards on this portal as they become available in the quarterly tranches, ' +
+      'or you can opt to accumulate them until the end in order to save gas fees. ' +
+      'You must claim your tokens before November 22th 2022 11 AM UTC; any tokens not claimed by ' +
+      'then will be returned to the loyality pool',
+  },
 ];
 
 export const windowStateMap = {
@@ -134,6 +150,11 @@ export const windowStatusLabelMap = {
 export const LOADER_MESSAGE = {
   MAP_CARDANO_WALLET_PROGRESS: 'Mapping to your Cardano wallet Nami in progress',
   CLAIM_PROGRESS: 'Claim in progress',
+};
+
+export const TRANSACTION_TYPE = {
+  ADA_TRANSFER: 'ada_transfer',
+  TOKEN_TRANSFER: 'token_transfer',
 };
 
 export const numberWithCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');

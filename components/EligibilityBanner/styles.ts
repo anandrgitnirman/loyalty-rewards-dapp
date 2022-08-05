@@ -11,7 +11,10 @@ export default (theme: Theme): any => ({
       width: '83%',
       margin: '160px auto 8px',
     },
-    '@media(max-width:640px)': { marginTop: 210 },
+    '@media(max-width:640px)': {
+      padding: '16px 15px 23px',
+      marginTop: 210,
+    },
   },
   airDropStatusContainer: {
     paddingBottom: 10,
@@ -47,9 +50,19 @@ export default (theme: Theme): any => ({
         fontFamily: 'MontserratRegular',
         fontSize: 14,
         lineHeight: '24px',
+        '@media(max-width: 1240px)': { display: 'block' },
+      },
+      '& button': {
+        '@media(max-width: 1240px)': { padding: 0 },
       },
       '& p': {
         fontFamily: 'MuliRegular',
+        '@media(max-width: 1240px)': {
+          whiteSpace: 'break-spaces',
+          textAlign: 'left',
+          wordBreak: 'break-all',
+        },
+        '@media(max-width: 480px)': { fontSize: 16 },
         '& svg': {
           marginLeft: 10,
           color: `${theme.palette.alertMsg.pendingBorder}`,
@@ -70,7 +83,10 @@ export default (theme: Theme): any => ({
         fontWeight: 400,
         lineHeight: '29px',
       },
+      '@media(max-width: 480px)': { textAlign: 'center' },
     },
+    '@media(max-width: 1240px)': { maxWidth: '100%' },
+    '@media(max-width: 480px)': { flexDirection: 'column' },
   },
   walletDetailsMainGrid: {
     '@media(max-width: 1240px)': { flexDirection: 'column' },

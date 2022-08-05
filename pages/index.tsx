@@ -12,6 +12,7 @@ import Ecosystem from 'snet-ui/Ecosystem';
 import CommonLayout from 'layout/CommonLayout';
 import Registration from 'components/Registration';
 import Airdroprules from 'snet-ui/Airdroprules';
+import FAQ from 'snet-ui/FAQ';
 
 import { RefObject, useEffect, useRef, useState } from 'react';
 import axios from 'utils/Axios';
@@ -159,6 +160,7 @@ const Home: NextPage = () => {
       const airdropRewards = data.airdrop_window_rewards;
       const cardanoAddress = data.registration_details?.other_details?.cardanoAddress || null;
       const cardanoMapedDate = data.registration_details?.registered_at || null;
+      const registrationId = data.registration_id;
       const isClaimable = data.is_claimable;
       let message = '';
       if (isEligible) {
@@ -177,6 +179,7 @@ const Home: NextPage = () => {
           )
         );
       }
+      setRegistrationId(registrationId);
       dispatch(setCardanoWalletAddress(cardanoAddress));
       dispatch(setCardanoMapedDate(cardanoMapedDate ? getDateInStandardFormat(cardanoMapedDate) : null));
       setAirdropwindowRewards(airdropRewards);
@@ -229,6 +232,7 @@ const Home: NextPage = () => {
           setClaimStatus={setUserClaimStatus}
           airdropWindowrewards={airdropWindowRewards}
           getUserEligibility={getUserEligibility}
+          registrationID={registrationId}
         />
       </Grid>
       <HowItWorks
@@ -246,6 +250,7 @@ const Home: NextPage = () => {
       />
       <AirdropSchedules ref={scheduleRef} schedules={schedules} />
       <Ecosystem blogLink="https://singularitynet.io/" />
+      <FAQ />
     </CommonLayout>
   );
 };

@@ -5,7 +5,7 @@ export default (theme: Theme): any => ({
     border: `1px solid ${theme.palette.alertMsg.successBorder} !important`,
     backgroundColor: `${theme.palette.alertMsg.successBg} !important`,
   },
-  pandingMsg: {
+  pendingMsg: {
     border: `1px solid ${theme.palette.alertMsg.pendingBorder} !important`,
     backgroundColor: `${theme.palette.alertMsg.pendingBg} !important`,
   },

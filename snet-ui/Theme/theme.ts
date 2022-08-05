@@ -33,8 +33,9 @@ declare module '@mui/material/styles' {
       successBorder: string;
       successBg: string;
       pendingBorder: string;
-      pandingBg: string;
+      pendingBg: string;
       main: string;
+      successGreen: string;
     };
   }
 }
@@ -73,12 +74,18 @@ declare module '@mui/material/Typography/Typography' {
 
 export const lightTheme = createTheme({
   palette: {
-    common: { black: colors.BLACK, black1: colors.BLACK_1, white: colors.WHITE, grey: colors.GREY, grey1: colors.GREY_1,  },
+    common: {
+      black: colors.BLACK,
+      black1: colors.BLACK_1,
+      white: colors.WHITE,
+      grey: colors.GREY,
+      grey1: colors.GREY_1,
+    },
     primary: { main: colors.DARK_BLUE },
     secondary: { main: colors.LIGHT_TEAL, light: colors.PENDING_BORDER },
     bgHighlight: { main: colors.WHITE_2 },
     headerBlue: { main: colors.HEADER_BLUE},
-    bgGradient: { main: colors.GRADIENT_1 },
+    bgGradient: { main: colors.GRADIENT_1, purple: colors.PURPLE_GRADIENT },
     bgGradientHighlight: { main: colors.GRADIENT_BOX },
     background: { default: colors.WHITE, paper: colors.WHITE, purple: colors.PURPLE_1 },
     text: { primary: colors.BLACK, secondary: colors.WHITE_2 },
@@ -97,7 +104,7 @@ export const lightTheme = createTheme({
       white: colors.WHITE,
       red: colors.RED,
     },
-    bgBox: { main: colors.PURPLE },
+    bgBox: { main: colors.PURPLE, smallBox: colors.PURPLE_2 },
     bgtext: { main: colors.DARK_BLUE },
     alertMsg: {
       errorBorder: colors.ERROR_BORDER,
@@ -105,7 +112,7 @@ export const lightTheme = createTheme({
       successBorder: colors.SUCCESS_BORDER,
       successBg: colors.SUCCESS_BG,
       pendingBorder: colors.PENDING_BORDER,
-      pandingBg: colors.PENDING_BG,
+      pendingBg: colors.PENDING_BG,
       main: colors.ERROR_BORDER,
       successGreen: colors.SUCCESS_GREEN,
     },

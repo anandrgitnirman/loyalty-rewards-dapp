@@ -41,14 +41,19 @@ const headerStyles = makeStyles((theme: Theme) => ({
       letterSpacing: -0.5,
       lineHeight: '30px',
       '@media(max-width:690px)': { fontSize: 16 },
+      '@media(max-width:360px)': { fontSize: 14 },
     },
     '@media(max-width:1023px)': { marginLeft: 40 },
+    '@media(max-width:690px)': { marginLeft: 30 },
   },
   navlinks: {
     marginLeft: 'auto',
   },
   rightButton: {
     marginLeft: '50px',
+    '& button': {
+      '@media(max-width:640px)': { padding: 0 },
+    },
     '& svg': {
       boxSizing: 'content-box',
       padding: 7,
@@ -77,6 +82,7 @@ const headerStyles = makeStyles((theme: Theme) => ({
         '& span': { textTransform: 'uppercase' },
       },
     },
+    '@media(max-width:640px)': { marginLeft: 0 },
   },
   accountButton: {
     padding: '0px',
@@ -118,7 +124,6 @@ const headerStyles = makeStyles((theme: Theme) => ({
   wrapper: {
     boxSizing: 'border-box',
     maxWidth: 1550,
-    // padding: "15px 60px",
     padding: 7,
     margin: '0 auto',
     '& > div': {
@@ -160,7 +165,8 @@ const headerStyles = makeStyles((theme: Theme) => ({
     display: 'inline-block',
     '& img': {
       width: 180,
-      '@media(max-width:400px)': { width: 140 },
+      '@media(max-width:690px)': { width: 140 },
+      '@media(max-width:360px)': { width: 120 },
     },
   },
   navigationSection: {
