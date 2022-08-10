@@ -43,7 +43,7 @@ function SubscribeToNotification({ onSubscribe }: SubscribeToNotificationProps, 
     setAlertMessage({ severity: AlertTypes.error, message: '' });
     try {
       if (!validateEmail(email)) {
-        throw new ValidationError('invalid email');
+        throw new ValidationError('Please enter a valid email address.');
       }
       setSubscriptionLoader(true);
 
@@ -105,7 +105,7 @@ function SubscribeToNotification({ onSubscribe }: SubscribeToNotificationProps, 
         {alertMessage.message ? (
           <Box className={classes.alertBoxContainer}>
             <Alert icon={<ErrorOutline />} severity="error">
-              <AlertTitle>alertMessagemessage</AlertTitle>
+              <AlertTitle>{alertMessage.message}</AlertTitle>
             </Alert>
           </Box>
         ) : null}

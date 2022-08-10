@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
-import Button from '@mui/material/Button';
+import SNETButton from 'snet-ui/SNETButton';
 import React from 'react';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import howItWorksStyles from './styles';
@@ -18,6 +18,10 @@ type HowItWorksProps = {
 
 export default function HowItWorks({ title, steps, blogLink, ref }: HowItWorksProps) {
   const classes = howItWorksStyles();
+
+  const onReadBlogClick = () => {
+    window.open(blogLink, '_blank');
+  };
 
   return (
     <Box className={classes.howItWorksContainer} ref={ref}>
@@ -39,19 +43,11 @@ export default function HowItWorks({ title, steps, blogLink, ref }: HowItWorksPr
             </li>
           ))}
         </ul>
-        <Box className={classes.btnContainer}>
-          {blogLink ? (
-            <Button
-              variant="outlined"
-              endIcon={<OpenInNewIcon />}
-              href={blogLink}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Read Blog Post
-            </Button>
-          ) : null}
-        </Box>
+        {blogLink ? (
+          <Box className={classes.btnContainer}>
+            <SNETButton name="Read Blog Post" onClick={onReadBlogClick} variant="outlined" icon={<OpenInNewIcon />} />
+          </Box>
+        ) : null}
       </Box>
     </Box>
   );

@@ -12,15 +12,18 @@ const getUpdateNotificationStyles = makeStyles((theme: Theme) => ({
     },
   },
   getUpdateNotificationForm: {
-    margin: '60px 0 0',
+    margin: '40px 0 0',
     justifyContent: 'center',
     '& > div': {
       width: 440,
       marginRight: 8,
       borderRadius: 3,
-      backgroundColor: `${theme.palette.common.white}`,
-      '& > div': { padding: '0 10px' },
+      '& > div': {
+        padding: '0 10px',
+        backgroundColor: `${theme.palette.common.white}`,
+      },
       '& input': {
+        padding: '10.5px 14px',
         fontSize: 14,
         fontFamily: 'MuliRegular',
       },
@@ -29,7 +32,7 @@ const getUpdateNotificationStyles = makeStyles((theme: Theme) => ({
       '@media(max-width: 620px)': { marginRight: 0 },
     },
     '& button': {
-      fontFamily: 'MuliSemiBold',
+      height: 'auto',
       textTransform: 'uppercase',
       '@media(max-width: 620px)': { marginTop: 15 },
     },
@@ -43,6 +46,7 @@ const getUpdateNotificationStyles = makeStyles((theme: Theme) => ({
       backgroundColor: `${theme.palette.error.light}`,
       '& svg': { color: `${theme.palette.error.main}` },
       '& .MuiAlertTitle-root': { fontFamily: 'MuliRegular' },
+      '& .MuiAlert-message': { marginBottom: 0 },
       '@media(max-width: 600px)': { width: '100%' },
     },
   },

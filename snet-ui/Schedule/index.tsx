@@ -2,7 +2,7 @@ import React from 'react';
 import Timeline from '@mui/lab/Timeline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
+import SNETButton from 'snet-ui/SNETButton';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ScheduleEvent from './ScheduleEvent';
 import scheduleStyles from './styles';
@@ -21,27 +21,26 @@ type Props = {
 
 export default function Schedule({ title, events, blogLink }: Props) {
   const classes = scheduleStyles();
+
+  const onReadBlogClick = () => {
+    window.open(blogLink, '_blank');
+  };
+
   return (
     <Box className={classes.scheduleContainer}>
-      <Typography align="center" variant="h2">{title}</Typography>
+      <Typography align="center" variant="h2">
+        {title}
+      </Typography>
       <Timeline className={classes.timeLineContainer}>
         {events.map((event, index) => (
           <ScheduleEvent key={event.time.toString()} event={event} nextEventTime={events[index + 1]?.time} />
         ))}
       </Timeline>
-      <Box className={classes.btnContainer}>
-        {blogLink ? (
-          <Button
-            variant="outlined"
-            endIcon={<OpenInNewIcon />}
-            href={blogLink}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Read Blog Post
-          </Button>
-        ) : null}
-      </Box>
+      {blogLink ? (
+        <Box className={classes.btnContainer}>
+          <SNETButton name="Read Blog Post" onClick={onReadBlogClick} variant="outlined" icon={<OpenInNewIcon />} />
+        </Box>
+      ) : null}
     </Box>
   );
 }

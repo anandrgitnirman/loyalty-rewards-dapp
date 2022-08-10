@@ -1,10 +1,10 @@
 import React from 'react';
 import StarsOutlinedIcon from '@mui/icons-material/StarsOutlined';
 import { Box } from '@mui/system';
-import { Container, Typography, Button } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import Divider from '@mui/material/Divider';
+import SNETButton from 'snet-ui/SNETButton';
 import rulesStyles from './styles';
 
 type Step = {
@@ -20,6 +20,10 @@ type Props = {
 
 function Airdroprules({ title, steps, blogLink }: Props, ref) {
   const classes = rulesStyles();
+
+  const onReadBlogClick = () => {
+    window.open(blogLink, '_blank');
+  };
 
   if (!steps || !(steps.length > 0)) {
     return null;
@@ -42,19 +46,11 @@ function Airdroprules({ title, steps, blogLink }: Props, ref) {
             </Box>
           ))}
         </Box>
-        <Box className={classes.btnContainer}>
-          {blogLink ? (
-          <Button
-            variant="outlined"
-            endIcon={<OpenInNewIcon />}
-            href={blogLink}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Read Blog Post
-          </Button>
-          ) : null}
-        </Box>
+        {blogLink ? (
+          <Box className={classes.btnContainer}>
+            <SNETButton name="Read Blog Post" onClick={onReadBlogClick} variant="outlined" icon={<OpenInNewIcon />} />
+          </Box>
+        ) : null}
       </Container>
     </Grid>
   );

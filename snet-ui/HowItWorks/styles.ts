@@ -73,16 +73,6 @@ const howItWorksStyles = makeStyles((theme: Theme) => ({
   },
   btnContainer: {
     textAlign: 'center',
-    '& button': {
-      borderColor: `${theme.palette.alertMsg.pendingBorder}`,
-      color: `${theme.palette.alertMsg.pendingBorder}`,
-      fontFamily: 'MuliSemiBold',
-      fontSize: 14,
-      lineHeight: '24px',
-      '&:hover': {
-        borderColor: `${theme.palette.alertMsg.pendingBorder}`,
-      },
-    },
   },
 }));
 

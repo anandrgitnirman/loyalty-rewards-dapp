@@ -2,9 +2,7 @@ import React, { useMemo } from 'react';
 import GradientBox from 'snet-ui/GradientBox';
 import Typography from '@mui/material/Typography';
 import FlipCountdown from 'snet-ui/FlipClock/Countdown';
-import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
+import SNETButton from 'snet-ui/SNETButton';
 import Box from '@mui/system/Box';
 import styles from './styles';
 import { makeStyles } from '@mui/styles';
@@ -33,7 +31,7 @@ export default function AirdropRegistrationMini({
   tokenName,
   totalAirdropWindows,
   currentAirdropWindow,
-  windowAction
+  windowAction,
 }: AirdropRegistrationMiniProps) {
   const dispatch = useAppDispatch();
   const formattedDate = useMemo(() => getDateInStandardFormat(startDate), [startDate]);
@@ -65,9 +63,7 @@ export default function AirdropRegistrationMini({
         </div>
       </div>
       <Box className={classes.connectWalletBtn}>
-        <Button onClick={() => dispatch(setShowConnectionModal(true))} variant="contained">
-          Connect Wallet
-        </Button>
+        <SNETButton name="Connect Wallet" onClick={() => dispatch(setShowConnectionModal(true))} variant="container" />
       </Box>
     </GradientBox>
   );

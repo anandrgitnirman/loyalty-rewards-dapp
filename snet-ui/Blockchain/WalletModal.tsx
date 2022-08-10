@@ -16,6 +16,10 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import useStyles from './styles';
+import { NoEthereumProviderError } from '@web3-react/injected-connector';
+import { useAppDispatch } from 'utils/store/hooks';
+import { setWalletExtensionError } from 'utils/store/features/walletSlice';
+import { walletExtensions } from 'utils/constants/cardanoWallet';
 
 const style: SxProps<Theme> = {
   position: 'absolute',
@@ -49,6 +53,7 @@ export default function WalletModal({ open, setOpen }: Props) {
   const classes = useStyles();
   const { active, account, connector, activate, error, setError, library } = useWeb3React();
   useEagerConnect();
+  const dispatch = useAppDispatch();
 
   const handleConnect = async (connector: AbstractConnector | undefined) => {
     let name = '';
@@ -77,6 +82,14 @@ export default function WalletModal({ open, setOpen }: Props) {
           if (error instanceof UnsupportedChainIdError) {
             activate(connector);
             // a little janky...can't use setError because the connector isn't set
+          } else if (error instanceof NoEthereumProviderError) {
+            dispatch(
+              setWalletExtensionError({
+                title: 'Ethereum browser extension not detected',
+                walletName: 'MataMask',
+                link: walletExtensions.Matamask,
+              })
+            );
           } else {
             console.log('connection error', error);
             setError(error);

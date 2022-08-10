@@ -25,18 +25,13 @@ const ecoSystemStyles = makeStyles((theme: Theme) => ({
   btnContainer: {
     marginTop: 40,
     textAlign: 'center',
-    '& a': {
-      padding: '8px 15px',
+    '& button': {
       marginRight: 13,
-      color: `${theme.palette.text.secondary}`,
-      fontFamily: 'MuliSemiBold',
-      '&:last-of-type': { margin: 0 },
-    },
-  },
-  visitBtn: {
-    backgroundColor: `${theme.palette.alertMsg.pendingBorder}`,
-    '&:hover': {
-      backgroundColor: 'rgb(44, 93, 178)',
+      '&:last-of-type': {
+        borderColor: '#fff',
+        color: `${theme.palette.text.secondary}`,
+        margin: 0,
+      },
     },
   },
 }));

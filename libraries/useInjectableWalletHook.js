@@ -18,6 +18,7 @@ import {
   MetadataMap,
 } from '@emurgo/cardano-serialization-lib-asmjs';
 import AssetFingerprint from '@emurgo/cip14-js';
+import { cardanoWalletExtensionError } from 'utils/constants/cardanoWallet';
 
 let injectedWallet;
 
@@ -94,7 +95,12 @@ const useInjectableWalletHook = (supportingWallets) => {
   const connectWallet = async (walletName) => {
     try {
       const connectingWallet = toLower(walletName);
-      injectedWallet = await window.cardano[connectingWallet].enable();
+      if (window.cardano && window.cardano.hasOwnProperty(connectingWallet)) {
+        injectedWallet = await window.cardano[connectingWallet].enable();
+      } else {
+        throw new Error(cardanoWalletExtensionError);
+      }
+
       const currentNetworkId = await getNetworkId();
       if (Number(currentNetworkId) !== Number(process.env.NEXT_PUBLIC_CARDANO_NETWORK_ID)) {
         const error = `Invalid network selected please switch to ${currentNetworkId ? 'Testnet' : 'Mainnet'}`;

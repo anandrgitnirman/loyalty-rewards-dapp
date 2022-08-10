@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { ThemeProvider } from '@mui/material/styles';
@@ -17,16 +17,17 @@ import WalletModal from 'snet-ui/Blockchain/WalletModal';
 import { store } from 'utils/store';
 import { Provider } from 'react-redux';
 import { useAppDispatch, useAppSelector } from 'utils/store/hooks';
-import { setShowConnectionModal, setWalletError } from 'utils/store/features/walletSlice';
+import { setShowConnectionModal, setWalletError, setWalletExtensionError } from 'utils/store/features/walletSlice';
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
 import UnsupportedNetworkModal from 'snet-ui/Blockchain/UnsupportedNetworkModal';
 import Image from 'next/image';
+import NoWalletInstalledModal from 'snet-ui/Blockchain/NoWalletInstalledModal';
 
 console.log(
   `Don't remove this console. 
 It is mandatory to import the Image from "next/image"
 for @sls-next/serverless-component to build the Image lambda properly.`,
-  Image.name,
+  Image.name
 );
 
 const BlockChainProvider = dynamic(() => import('snet-ui/Blockchain/Provider'), { ssr: false });
@@ -42,7 +43,8 @@ const AppWithBlockchainComps = (props: AppProps) => {
   // Always use `useActiveWeb3React` anywhere in the rest of the Application.
   const { error, chainId, account } = useWeb3React();
 
-  const { showConnectionModal, error: walletError } = useAppSelector((state) => state.wallet);
+  const { showConnectionModal, error: walletError, walletExtentionError } = useAppSelector((state) => state.wallet);
+  const [showNoWalletExtensionOverlay, setShowNoWalletExtensionOverlay] = useState(false);
   const dispatch = useAppDispatch();
   const supportedChainId = Number(process.env.NEXT_PUBLIC_SUPPORTED_CHAIN_ID);
 
@@ -52,6 +54,16 @@ const AppWithBlockchainComps = (props: AppProps) => {
     return false;
   }, [chainId, error, account]);
 
+  const closeNoWalletExtensionModal = () => {
+    dispatch(setWalletExtensionError(null));
+    setShowNoWalletExtensionOverlay(false);
+  };
+  useEffect(() => {
+    if (walletExtentionError) {
+      setShowNoWalletExtensionOverlay(true);
+    }
+  }, [walletExtentionError]);
+
   if (error?.message !== walletError) {
     dispatch(setWalletError(error?.message));
   }
@@ -59,11 +71,13 @@ const AppWithBlockchainComps = (props: AppProps) => {
   return (
     <>
       <Component {...pageProps} />
-      <WalletModal
-        open={showConnectionModal}
-        setOpen={(val) => dispatch(setShowConnectionModal(val))}
-      />
+      <WalletModal open={showConnectionModal} setOpen={(val) => dispatch(setShowConnectionModal(val))} />
       <UnsupportedNetworkModal open={showNetworkOverlay} supportedChainId={supportedChainId} />
+      <NoWalletInstalledModal
+        open={showNoWalletExtensionOverlay}
+        onClose={closeNoWalletExtensionModal}
+        error={walletExtentionError}
+      />
     </>
   );
 };

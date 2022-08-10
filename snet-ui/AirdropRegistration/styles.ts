@@ -13,13 +13,13 @@ const airdropRegistrationStyles = makeStyles((Theme) => ({
     marginTop: 24,
     textAlign: 'center',
     '& button': {
-      border: '1px solid #f4f8ff',
       marginRight: 24,
-      '& p': { fontFamily: 'MuliSemiBold' },
-      '&:last-of-type': { marginRight: 0 },
+      borderColor: Theme.palette.bgHighlight.main,
+      color: Theme.palette.bgHighlight.main,
       '&:hover': {
-        border: '1px solid #f4f8ff',
+        borderColor: Theme.palette.bgHighlight.main,
       },
+      '&:last-of-type': { marginRight: 0 },
       '@media(max-width: 480px)': { margin: '0 0 10px 0' },
     },
     '@media(max-width: 480px)': {

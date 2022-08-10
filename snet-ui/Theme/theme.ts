@@ -80,6 +80,7 @@ export const lightTheme = createTheme({
       white: colors.WHITE,
       grey: colors.GREY,
       grey1: colors.GREY_1,
+      snetBlue: colors.SNET_BLUE,
     },
     primary: { main: colors.DARK_BLUE },
     secondary: { main: colors.LIGHT_TEAL, light: colors.PENDING_BORDER },
