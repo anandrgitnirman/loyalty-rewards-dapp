@@ -53,6 +53,7 @@ export default (theme: Theme): any => ({
         '@media(max-width: 1240px)': { display: 'block' },
       },
       '& button': {
+        position: 'relative',
         '@media(max-width: 1240px)': { padding: 0 },
       },
       '& p': {
@@ -87,6 +88,17 @@ export default (theme: Theme): any => ({
     },
     '@media(max-width: 1240px)': { maxWidth: '100%' },
     '@media(max-width: 480px)': { flexDirection: 'column' },
+  },
+  copiedText: {
+    borderRadius: 5,
+    padding: '3px 5px',
+    position: 'absolute',
+    top: -30,
+    right: -15,
+    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.grey,
+    fontSize: '11px !important',
+    textTransform: 'Capitalize',
   },
   walletDetailsMainGrid: {
     '@media(max-width: 1240px)': { flexDirection: 'column' },

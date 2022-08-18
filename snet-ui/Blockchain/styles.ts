@@ -246,8 +246,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor: '#FFF',
         boxShadow: '0 0 8px 0 rgba(173,180,180,0.24)',
         '&:hover': {
-          border: '1px solid #4F13E0',
-          backgroundColor: 'rgba(79,19,224,0.1)',
+          border: '1px solid #4086ff',
         },
       },
       '& span': {

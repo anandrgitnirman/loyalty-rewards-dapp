@@ -1,9 +1,8 @@
 import { Grid, Typography, Box, Avatar, Button } from '@mui/material';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { SupportedChainId } from 'snet-ui/Blockchain/connectors';
 import { useActiveWeb3React } from 'snet-ui/Blockchain/web3Hooks';
 import { UserEligibility } from 'utils/constants/CustomTypes';
-import Notqualified from 'snet-ui/Noteligible';
 import SkeletonLoader from './SkeletonLoader';
 import { useAppSelector } from 'utils/store/hooks';
 import { selectActiveWindow } from 'utils/store/features/activeWindowSlice';
@@ -28,12 +27,12 @@ export default function EligibilityBanner({
   onViewSchedule,
   rejectReasons,
 }: EligibilityBannerProps) {
-  const { account, chainId, library } = useActiveWeb3React();
-  const { window: activeWindow, totalWindows } = useAppSelector(selectActiveWindow);
+  const { account, chainId } = useActiveWeb3React();
+  const { window: activeWindow } = useAppSelector(selectActiveWindow);
   const { cardanoWalletAddress } = useAppSelector((state) => state.wallet);
   const { airdropStatusMessage } = useAppSelector((state) => state.airdropStatus);
-  const [ethCopyBtnName, setEthCopyBtnName] = useState('Copy');
-  const [cardanoCopyBtnName, setCardanoCopyBtnName] = useState('Copy');
+  const [etherumAddressCopied, setShowEtherumAddressCopied] = useState(false);
+  const [cardanoAddressCopied, setShowCardanoAddressCopied] = useState(false);
   const network = useMemo(() => SupportedChainId[chainId ?? ''], [chainId]);
   const classes = useStyles();
 
@@ -49,8 +48,19 @@ export default function EligibilityBanner({
 
   const addEllipsisInBetweenString = (str) => `${str.substr(0, 15)}...${str.substr(str.length - 15)}`;
 
-  const onClickCopy = (address) => {
+  const onClickCopy = (address, type) => {
     navigator.clipboard.writeText(address);
+    if (type === 'etherum') {
+      setShowEtherumAddressCopied(true);
+      setTimeout(() => {
+        setShowEtherumAddressCopied(false);
+      }, 1000);
+    } else {
+      setShowCardanoAddressCopied(true);
+      setTimeout(() => {
+        setShowCardanoAddressCopied(false);
+      }, 1000);
+    }
   };
 
   return (
@@ -66,11 +76,12 @@ export default function EligibilityBanner({
           <Avatar alt={supportedEtherumWallet.name} src={supportedEtherumWallet.logoUrl} />
           <div>
             <span>Connected Wallet Address</span>
-            <Button onClick={(e) => onClickCopy(account)}>
+            <Button onClick={(e) => onClickCopy(account, 'etherum')}>
               <Typography noWrap variant="priority" component="p">
                 {addEllipsisInBetweenString(account)}
                 <ContentCopyIcon />
               </Typography>
+              {etherumAddressCopied ? <span className={classes.copiedText}>Copied!</span> : null}
             </Button>
             <Typography variant="h5">Ethereum {network?.toLowerCase()}</Typography>
           </div>
@@ -81,11 +92,12 @@ export default function EligibilityBanner({
             <span>Mapped Cardano Wallet Address</span>
             {cardanoWalletAddress ? (
               <>
-                <Button onClick={(e) => onClickCopy(cardanoWalletAddress)}>
+                <Button onClick={(e) => onClickCopy(cardanoWalletAddress, 'cardano')}>
                   <Typography noWrap variant="priority" component="p">
                     {addEllipsisInBetweenString(cardanoWalletAddress)}
                     <ContentCopyIcon />
                   </Typography>
+                  {cardanoAddressCopied ? <span className={classes.copiedText}>Copied!</span> : null}
                 </Button>
                 <Typography variant="h5">Cardano {network?.toLowerCase()}</Typography>
               </>

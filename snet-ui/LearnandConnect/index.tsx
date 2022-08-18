@@ -20,11 +20,11 @@ export default function Learn() {
           <ul className={classes.learnConnectContentContainer}>
             {data.map((item, key) => (
               <li className={classes.learnConnectCard}>
-                <a href={AIRDROP_LINKS.WHITEPAPER} rel="noopener noreferrer" target="_blank">
+                <a href={item.link} rel="noopener noreferrer" target="_blank">
                   <img src={item.img} alt={item.title} />
+                  <Typography component="span">{item.title}</Typography>
+                  <Typography>{item.description}</Typography>
                 </a>
-                <Typography component="span">{item.title}</Typography>
-                <Typography>{item.description}</Typography>
               </li>
             ))}
           </ul>

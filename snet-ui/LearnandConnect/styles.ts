@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   learnConnectCard: {
     width: '33%',
-    padding: '32px 27px 32px 21px',
     borderRadius: 6,
     marginRight: 24,
     backgroundColor: `${theme.palette.common.white}`,
@@ -32,8 +31,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     listStyle: 'none',
     textAlign: 'center',
     '& a': {
+      padding: '32px 27px 32px 21px',
       display: 'inline-block',
       '& img': { width: 98 },
+      '&:hover': {
+        '& span': { color: `${theme.palette.alertMsg.pendingBorder}`},
+      }
     },
     '& span': {
       padding: '24px 0 16px',

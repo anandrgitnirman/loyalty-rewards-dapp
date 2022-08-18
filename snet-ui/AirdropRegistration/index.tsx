@@ -440,10 +440,10 @@ export default function AirdropRegistration({
                   </Typography>
                   <Box display={'flex'} justifyContent={'center'} mt={2}>
                     <Grid className={classes.mappedWalletDateTimeContainer} xs={9}>
-                      <Typography color="textAdvanced.dark" fontSize={14} fontWeight={600}>
+                      <Typography color="textAdvanced.dark" fontSize={14} fontWeight={600} fontFamily="MuliSemiBold">
                         Cardano Wallet Mapped
                       </Typography>
-                      <Typography color="textAdvanced.dark" fontSize={14}>
+                      <Typography color="textAdvanced.dark" fontSize={14} fontFamily="MuliRegular">
                         {cardanoMapedDate}
                       </Typography>
                     </Grid>

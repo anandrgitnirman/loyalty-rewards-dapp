@@ -20,12 +20,12 @@ export default function NoWalletInstalledModal({ open, error, onClose }: NoWalle
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>
-        <Typography color="primary.main" variant="h5">
+        <Typography color="primary.main" variant="h5" fontFamily="MuliSemiBold">
           {error?.title}
         </Typography>
       </DialogTitle>
       <DialogContent dividers sx={{ py: 4 }}>
-        <Typography color="text.primary" variant="priority">
+        <Typography color="text.primary" variant="priority" fontFamily="MuliRegular">
           {'Please Install '}
           <Link component="a" href={error?.link} underline="always" target="_blank">
             {error?.walletName}

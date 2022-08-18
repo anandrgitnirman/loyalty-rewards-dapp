@@ -32,6 +32,9 @@ const ecoSystemStyles = makeStyles((theme: Theme) => ({
         color: `${theme.palette.text.secondary}`,
         margin: 0,
       },
+      '&:first-of-type': {
+        '@media(max-width: 512px)': { marginBottom: 20 },
+      }
     },
   },
 }));

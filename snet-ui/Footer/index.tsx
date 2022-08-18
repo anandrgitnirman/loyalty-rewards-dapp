@@ -8,6 +8,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 type FooterProps = {
   handleScrollToLink: (scrollToKey?: string) => void;
@@ -15,10 +17,19 @@ type FooterProps = {
 
 function Footer({ handleScrollToLink }: FooterProps) {
   const [email, setEmail] = useState('');
+  const [openSnackBar, setOpenSnackBar] = useState(false);
   const classes = footerStyles();
 
   const handleEmailChange = (event: { target: { value: React.SetStateAction<string> } }) => {
     setEmail(event.target.value);
+  };
+
+  const onJoinClick = () => {
+    setOpenSnackBar(true);
+  };
+
+  const handleCloseSnackBar = () => {
+    setOpenSnackBar(false);
   };
 
   return (
@@ -75,7 +86,12 @@ function Footer({ handleScrollToLink }: FooterProps) {
                 <span>Subscribe to Newsletter</span>
                 <Box>
                   <TextField value={email} placeholder="johndoe@gmail.com" onChange={handleEmailChange} fullWidth />
-                  <Button>join</Button>
+                  <Button onClick={onJoinClick}>join</Button>
+                  <Snackbar open={openSnackBar} autoHideDuration={2000} onClose={handleCloseSnackBar}>
+                    <Alert onClose={handleCloseSnackBar} severity="success" sx={{ width: '100%' }}>
+                      You’ve successfully subscribed to our newsletter.
+                    </Alert>
+                  </Snackbar>
                 </Box>
               </Box>
             </Box>

@@ -27,7 +27,7 @@ export default function History({ events }: HistoryProps) {
         <ListItem key={event.window}>
           <Grid container xs={9}>
             <Grid item xs={5}>
-              <Typography color="primary.main" fontSize={12}>
+              <Typography color="primary.main" fontSize={12} fontFamily="MuliSemiBold">
                 Claim
               </Typography>
               <Typography color="textAdvanced.dark" fontFamily="MuliSemiBold" fontSize={14} lineHeight="24px">
@@ -35,26 +35,26 @@ export default function History({ events }: HistoryProps) {
               </Typography>
             </Grid>
             <Grid item xs={3}>
-              <Typography color="primary.main" fontSize={12}>
+              <Typography color="primary.main" fontSize={12} fontFamily="MuliSemiBold">
                 Reward
               </Typography>
               {event.action_type === TRANSACTION_TYPE.ADA_TRANSFER ? (
-                <Typography color="textAdvanced.dark" fontFamily="MuliSemiBold" fontSize={14} lineHeight="24px">
+                <Typography color="textAdvanced.dark" fontFamily="MuliRegular" fontSize={14} lineHeight="24px">
                   {event.reward}
                 </Typography>
               ) : (
                 <Link component="a" href={`${CardanoTransaction}/${event.txn_hash}`} underline="always" target="_blank">
-                  <Typography fontFamily="MuliSemiBold" fontSize={14} lineHeight="24px">
+                  <Typography fontFamily="MuliRegular" fontSize={14} lineHeight="24px">
                     {event.reward}
                   </Typography>
                 </Link>
               )}
             </Grid>
             <Grid item xs={3}>
-              <Typography color="primary.main" fontSize={12}>
+              <Typography color="primary.main" fontSize={12} fontFamily="MuliSemiBold">
                 Status
               </Typography>
-              <Typography color="textAdvanced.dark" fontFamily="MuliSemiBold" fontSize={14} lineHeight="24px">
+              <Typography color="textAdvanced.dark" fontFamily="MuliRegular" fontSize={14} lineHeight="24px">
                 {event.status}
               </Typography>
             </Grid>

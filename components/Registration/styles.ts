@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   successModal: { backgroundColor: '##00000080' },
   successGradientBox: {
     width: 802,
+    paddingBottom: 80,
     borderRadius: 4,
     background:
       'linear-gradient(45deg, #2E1C89 0%, #492C92 100%), radial-gradient(circle, rgba(29,91,189,0.5) 0%, rgba(0,0,0,0) 100%), radial-gradient(circle, #B03FC3 0%, rgba(0,0,0,0) 100%), radial-gradient(circle, #184FA7 0%, #103884 41.67%, #061753 100%)',
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    textAlign: 'center',
     '& img': { width: '100%' },
     '& > div': {
       padding: '0 83px 0 86px',

@@ -151,6 +151,7 @@ export default function WalletModal({ open, setOpen }: Props) {
                 component="a"
                 href="https://public.singularitynet.io/terms_and_conditions.html"
                 variant="link"
+                target="_blank"
               >
                 {' '}
                 Terms and Conditions

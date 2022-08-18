@@ -159,7 +159,12 @@ export default function AccountModal({ open, onClose }: AccountModalProps) {
         <DialogActions className={classes.accountModalDialogActions}>
           <Typography>
             By connecting to the wallets, you agree to our{' '}
-            <a href="https://public.singularitynet.io/terms_and_conditions.html" title="Terms & Conditions">
+            <a
+              href="https://public.singularitynet.io/terms_and_conditions.html"
+              title="Terms & Conditions"
+              target="_blank"
+              rel="noreferrer"
+            >
               Terms & Conditions
             </a>
           </Typography>
