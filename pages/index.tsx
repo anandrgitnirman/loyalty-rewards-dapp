@@ -212,7 +212,7 @@ const Home: NextPage = () => {
         <title>{AIRDROP_TITLE_STRING}</title>
       </Head>
       <Grid>
-        <Box px={[0, 4, 15]}>
+        <Box>
           <EligibilityBanner
             userEligibility={userEligibility}
             onViewRules={() => handleScrollToView(rulesRef)}

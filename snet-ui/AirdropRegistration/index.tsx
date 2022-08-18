@@ -280,8 +280,8 @@ export default function AirdropRegistration({
       </Modal>
       <LoaderModal loader={loader} />
       <AccountModal open={showWalletConnectModal} onClose={toggleWalletConnectModal} />
-      <Grid container direction="row" justifyContent="center" alignItems="center">
-        <Grid item xs={10} md={12}>
+      <Grid container direction="row" justifyContent="center" alignItems="center" className={classes.addMaxWidth}>
+        <Grid item md={12}>
           <Box>
             <GradientBox
               $background="bgGradientHighlight"

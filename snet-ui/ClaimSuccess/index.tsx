@@ -39,7 +39,7 @@ export default function ClaimSuccess({
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', pb: 3 }}>
           <Box>
-            <Typography align="center" variant="h4" color="secondary.main" sx={{ pb: 3 }}>
+            <Typography align="center" variant="h4" color="common.white" sx={{ pb: 3 }}>
               Congratulations
             </Typography>
             <Box>

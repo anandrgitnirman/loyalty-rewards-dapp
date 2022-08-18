@@ -3,14 +3,12 @@ import listOfAirDropStatusType from './constants';
 
 export default (theme: Theme): any => ({
   eligibilityBannerContainer: {
+    maxWidth: 1160,
     padding: '16px 38px 23px',
     borderRadius: 8,
-    margin: '160px 0 8px',
+    margin: '160px auto 8px',
     backgroundColor: `${theme.palette.bgHighlight.main}`,
-    '@media(max-width:900px)': {
-      width: '83%',
-      margin: '160px auto 8px',
-    },
+    '@media(max-width:1200px)': { margin: '160px 20px 8px' },
     '@media(max-width:640px)': {
       padding: '16px 15px 23px',
       marginTop: 210,

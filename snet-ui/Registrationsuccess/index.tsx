@@ -47,8 +47,13 @@ export default function Success({
   const [copied, setCopied] = useState(false);
   const [claimLoader, setClaimLoader] = useState(false);
   const { airdropStatusMessage } = useAppSelector((state) => state.airdropStatus);
+  const [showCopiedText, setShowCopiedText] = useState(false);
 
   const copyIdToCipboard = () => {
+    setShowCopiedText(true);
+    setTimeout(() => {
+      setShowCopiedText(false);
+    }, 1000);
     if (window && window.navigator) {
       window.navigator.clipboard.writeText(registrationValue);
       setCopied(true);
@@ -66,13 +71,13 @@ export default function Success({
 
   return (
     <Box>
-      <GradientBox $background="bgGradientHighlight" sx={{ py: "40px", pb: "40px", borderRadius: "8px" }}>
+      <GradientBox $background="bgGradientHighlight" sx={{ py: '40px', pb: '40px', borderRadius: '8px' }}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <img src="/images/Congratulations.png" alt="SingularityNET" height="160px" width="170px" />
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', py: 3, pb: 3 }}>
           <Box>
-            <Typography align="center" variant="h3" pb={1.5} sx={{ color: `${colors.PENDING_BORDER}` }}>
+            <Typography align="center" variant="h3" pb={1.5} sx={{ color: `${colors.WHITE}` }}>
               Congratulations
             </Typography>
             <Box>
@@ -81,13 +86,34 @@ export default function Success({
               </Typography>
             </Box>
             <Box onClick={copyIdToCipboard}>
-              <Typography align="center" variant="body2" color="textAdvanced.secondary" fontWeight="500">
+              <Typography
+                align="center"
+                variant="body2"
+                color="textAdvanced.secondary"
+                fontWeight="500"
+                textTransform="initial"
+              >
                 Registration ID:
                 <span style={{ color: `${colors.DARK_TEAL}` }}>
                   <br />
                   {registrationValue}
                 </span>
                 <ContentCopyIcon sx={{ ml: 1, color: `${colors.DARK_TEAL}` }} />
+                {showCopiedText ? (
+                  <Typography
+                    component="span"
+                    borderRadius="5px"
+                    position="absolute"
+                    top="-30px"
+                    right="-15px"
+                    color="common.white"
+                    backgroundColor="common.grey"
+                    fontSize="11px"
+                    textTransform="capitalized"
+                  >
+                    Copied!
+                  </Typography>
+                ) : null}
               </Typography>
             </Box>
 

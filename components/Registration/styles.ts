@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: '0 83px 0 86px',
       '@media(max-width: 640px)': { padding: '0 10%' },
       '& h2': {
-        color: `${theme.palette.alertMsg.pendingBorder}`,
+        color: `${theme.palette.common.white}`,
         fontFamily: 'MuliBold',
         textAlign: 'center',
       },
@@ -42,12 +42,21 @@ const useStyles = makeStyles((theme: Theme) => ({
         textAlign: 'center',
       },
       '& > div': {
+        alignItems: 'center',
+        position: 'relative',
+        '& > span': {
+          color: `${theme.palette.text.secondary}`,
+          fontFamily: 'MontserratRegular',
+          fontSize: 14,
+          lineHeight: '24px',
+        },
         '& p': {
           color: `${theme.palette.text.secondary}`,
           fontFamily: 'MontserratRegular',
           fontSize: 14,
           lineHeight: '24px',
           wordBreak: 'break-word',
+          textTransform: 'initial',
         },
         '& svg': {
           marginLeft: 13,
@@ -57,6 +66,18 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
     '@media(max-width: 800px)': { width: '90%' },
+  },
+  copiedText: {
+    borderRadius: 5,
+    padding: '3px 5px',
+    position: 'absolute',
+    top: -30,
+    right: -15,
+    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.grey,
+    fontSize: '11px !important',
+    textTransform: 'Capitalize',
+    '@media(max-width:560px)': { top: 0 },
   },
   // Loader Modal
   loaderModal: {
@@ -89,7 +110,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   awesomeBtn: {
     padding: '8px 65px !important',
-    margin: '40px auto 80px',
+    margin: '40px auto 0',
     display: 'flex',
     borderRadius: 3,
     backgroundColor: `${theme.palette.alertMsg.pendingBorder} !important`,

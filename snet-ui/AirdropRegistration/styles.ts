@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 const airdropRegistrationStyles = makeStyles((Theme) => ({
   airdropClaimStartDateTime: {
     margin: 0,
-    '& h4': { 
+    '& h4': {
       fontFamily: 'MuliSemiBold',
       '@media(max-width: 480px)': { fontSize: 16 },
     },
@@ -60,6 +60,11 @@ const airdropRegistrationStyles = makeStyles((Theme) => ({
       maxWidth: '100%',
       flexBasis: '100%',
     },
+  },
+  addMaxWidth: {
+    maxWidth: 1160,
+    margin: '0 auto',
+    '@media(max-width: 1200px)': { padding: '0 20px' },
   },
 }));
 

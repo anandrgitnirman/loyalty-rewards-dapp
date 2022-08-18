@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -15,11 +15,16 @@ type RegistrationSuccessModalProps = {
 
 // eslint-disable-next-line max-len
 const RegistrationSuccessModal = ({ showModal, registrationId, onCloseModal }: RegistrationSuccessModalProps) => {
+  const [showCopiedText, setShowCopiedText] = useState(false);
   const classes = useStyles();
 
   const addEllipsisInBetweenString = (str) => `${str.substr(0, 15)}...${str.substr(str.length - 15)}`;
 
   const copyIdToCipboard = () => {
+    setShowCopiedText(true);
+    setTimeout(() => {
+      setShowCopiedText(false);
+    }, 1000);
     if (window && window.navigator) {
       window.navigator.clipboard.writeText(registrationId);
     }
@@ -41,6 +46,7 @@ const RegistrationSuccessModal = ({ showModal, registrationId, onCloseModal }: R
               <Typography>
                 Registration ID: {addEllipsisInBetweenString(registrationId)}
                 <ContentCopyIcon />
+                {showCopiedText ? <span className={classes.copiedText}>Copied!</span> : null }
               </Typography>
             </Button>
           </Box>

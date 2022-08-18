@@ -597,7 +597,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
     activeWindow.airdrop_window_status == WindowStatus.UPCOMING && activeWindow.airdrop_window_order === 1;
 
   return !showMini ? (
-    <Box sx={{ px: [0, 4, 15] }}>
+    <Box>
       <RegistrationSuccessModal
         showModal={showRegistrationSuccess}
         registrationId={registrationId}
