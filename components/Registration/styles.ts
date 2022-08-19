@@ -95,8 +95,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'column',
-    '& img': { width: '100%' },
+    '& img': { 
+      width: '100%',
+      position: 'absolute',
+      top: '-50px',
+    },
     '& p': {
+      position: 'absolute',
+      bottom: '50px',
       color: `${theme.palette.common.black1}`,
       fontFamily: 'MuliRegular',
       fontSize: 14,
