@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
@@ -19,6 +19,7 @@ import { useAppDispatch, useAppSelector } from 'utils/store/hooks';
 import { SupportedChainId } from '../Blockchain/connectors';
 import { useActiveWeb3React } from '../Blockchain/web3Hooks';
 import { setCardanowalletName, setStartMapingCardano } from 'utils/store/features/walletSlice';
+import { UserEligibility } from 'utils/constants/CustomTypes';
 
 type AccountModalProps = {
   open: boolean;
@@ -27,7 +28,7 @@ type AccountModalProps = {
 
 export default function AccountModal({ open, onClose }: AccountModalProps) {
   const { account, chainId, deactivate } = useActiveWeb3React();
-  const { cardanoWalletAddress, cardanoWalletName } = useAppSelector((state) => state.wallet);
+  const { cardanoWalletAddress, cardanoWalletName, isEligible } = useAppSelector((state) => state.wallet);
   const [copyEth, setCopyETh] = useState('copy');
   const [copyCardano, setCopyCardano] = useState('copy');
   const classes = useStyles();
@@ -55,10 +56,20 @@ export default function AccountModal({ open, onClose }: AccountModalProps) {
   };
 
   const connectCardanoWallet = (wallet) => {
-    onClose();
-    dispatch(setStartMapingCardano(true));
-    dispatch(setCardanowalletName(wallet.wallet));
+    if (isEligible === UserEligibility.ELIGIBLE) {
+      onClose();
+      dispatch(setStartMapingCardano(true));
+      dispatch(setCardanowalletName(wallet.wallet));
+    }
   };
+
+  const mapCardanoText = useMemo(() => {
+    if (isEligible === UserEligibility.ELIGIBLE) {
+      return 'Please select a Cardano wallet you want to map'
+    }else {
+      return 'Your connected wallet is not eligible to map to a cardano wallet'
+    }
+  }, [isEligible])
 
   return (
     <Box>
@@ -123,10 +134,14 @@ export default function AccountModal({ open, onClose }: AccountModalProps) {
             </Grid>
             {!cardanoWalletAddress ? (
               <Grid item md={7} className={classes.cardanoAccDetails}>
-                <Typography>Please select a Cardano wallet you want to map</Typography>
+                <Typography>{mapCardanoText}</Typography>
                 <List className={classes.cardanoWalletList}>
                   {supportedCardanoWallets.map((wallet) => (
-                    <ListItem key={wallet.identifier} onClick={() => connectCardanoWallet(wallet)}>
+                    <ListItem
+                      key={wallet.identifier}
+                      disabled={isEligible === UserEligibility.NOT_ELIGIBLE}
+                      onClick={() => connectCardanoWallet(wallet)}
+                    >
                       <img alt={wallet.wallet} src={wallet.logo} />
                       <span>{wallet.wallet}</span>
                     </ListItem>

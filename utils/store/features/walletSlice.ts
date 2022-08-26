@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserEligibility } from 'utils/constants/CustomTypes';
 
 type walletExtentionError = {
   title: string;
@@ -13,6 +14,7 @@ export type WalletState = {
   startMappingCardano: boolean;
   cardanoMapedDate: string | null;
   walletExtentionError: walletExtentionError | null;
+  isEligible: UserEligibility
 };
 
 const initialState: WalletState = {
@@ -22,6 +24,7 @@ const initialState: WalletState = {
   startMappingCardano: false,
   cardanoMapedDate: null,
   walletExtentionError: null,
+  isEligible: UserEligibility.PENDING,
 };
 
 export const walletSlice = createSlice({
@@ -51,6 +54,9 @@ export const walletSlice = createSlice({
     setWalletExtensionError: (state, action) => {
       state.walletExtentionError = action.payload;
     },
+    setEligibile: (state, action) => {
+      state.isEligible = action.payload;
+    },
   },
 });
 
@@ -62,6 +68,7 @@ export const {
   setStartMapingCardano,
   setCardanoMapedDate,
   setWalletExtensionError,
+  setEligibile,
 } = walletSlice.actions;
 const walletReducer = walletSlice.reducer;
 export default walletReducer;
