@@ -30,7 +30,7 @@ function Airdroprules({ title, steps, blogLink }: Props, ref) {
   }
 
   return (
-    <Grid className={classes.rulesContainer}>
+    <Grid className={classes.rulesContainer} ref={ref}>
       <Container>
         <Typography align="center" variant="h2">
           {title}
