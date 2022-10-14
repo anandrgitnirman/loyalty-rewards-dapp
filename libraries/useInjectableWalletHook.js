@@ -59,8 +59,6 @@ const useInjectableWalletHook = (supportingWallets) => {
       }
     });
 
-    console.log('Supported wallets: ', wallets);
-
     setSupportedWallets(wallets);
 
     return wallets.length;

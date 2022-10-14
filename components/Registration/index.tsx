@@ -557,7 +557,9 @@ const Registration: FunctionComponent<RegistrationProps> = ({
   }
 
   const windowOrder =
-    activeWindow.airdrop_window_status === WindowStatus.LAST_CLAIM || (cardanoWalletAddress && !claimInitiated)
+    activeWindow.airdrop_window_status === WindowStatus.LAST_CLAIM ||
+    activeWindow.airdrop_window_status === WindowStatus.IDLE ||
+    (cardanoWalletAddress && !claimInitiated)
       ? activeWindow.airdrop_window_order
       : activeWindow.airdrop_window_order + 1;
 

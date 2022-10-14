@@ -165,10 +165,14 @@ export const findActiveWindow = (windows: AirdropWindow[]): AirdropWindow | unde
     .sort((windowA, windowB) => windowA.airdrop_window_id - windowB.airdrop_window_id);
 
   const todayDate = moment.utc(new Date());
-
+  const isUpcomming =
+  checkDateIsGreaterThan(moment.utc(sortedWindows[0].airdrop_window_claim_start_period), todayDate);
   let activeWindow = sortedWindows[0];
-  activeWindow.airdrop_window_status = WindowStatus.CLAIM;
-  activeWindow.next_window_start_period = sortedWindows[0].airdrop_window_claim_end_period;
+  activeWindow.airdrop_window_status = isUpcomming ? WindowStatus.IDLE : WindowStatus.CLAIM;
+  activeWindow.next_window_start_period = isUpcomming
+    ? sortedWindows[0].airdrop_window_claim_start_period
+    : sortedWindows[0].airdrop_window_claim_end_period;
+
   sortedWindows.map((item, index) => {
     if (
       checkDateIsBetween(

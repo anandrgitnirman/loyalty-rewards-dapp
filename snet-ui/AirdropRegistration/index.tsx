@@ -292,7 +292,7 @@ export default function AirdropRegistration({
                 borderRadius: 2,
               }}
             >
-              {!cardanoWalletAddress || isClaimInitiated ? (
+              {!cardanoWalletAddress || isClaimInitiated || !isClaimActive ? (
                 <>
                   <Box className={classes.airdropClaimStartDateTime}>
                     <Typography color="text.secondary" variant="h4" align="center" mb={1}>
@@ -389,7 +389,7 @@ export default function AirdropRegistration({
                   mt: 3,
                 }}
               >
-                {cardanoWalletAddress && isClaimActive ? (
+                {cardanoWalletAddress ? (
                   <LoadingButton
                     variant="contained"
                     color="secondary"
@@ -398,7 +398,7 @@ export default function AirdropRegistration({
                       textTransform: 'capitalize',
                     }}
                     onClick={handleClaimClick}
-                    disabled={isClaimInitiated}
+                    disabled={isClaimInitiated || !isClaimActive}
                   >
                     CLAIM NOW
                   </LoadingButton>
