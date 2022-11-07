@@ -65,11 +65,11 @@ export default function AccountModal({ open, onClose }: AccountModalProps) {
 
   const mapCardanoText = useMemo(() => {
     if (isEligible === UserEligibility.ELIGIBLE) {
-      return 'Please select a Cardano wallet you want to map'
-    }else {
-      return 'Your connected wallet is not eligible to map to a cardano wallet'
+      return 'Please select a Cardano wallet you want to map';
+    } else {
+      return 'Your connected wallet is not eligible to map to a cardano wallet';
     }
-  }, [isEligible])
+  }, [isEligible]);
 
   return (
     <Box>

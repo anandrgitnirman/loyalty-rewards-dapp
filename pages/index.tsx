@@ -34,7 +34,12 @@ import { APIError } from 'utils/errors';
 import { selectActiveWindow, setActiveWindowState } from 'utils/store/features/activeWindowSlice';
 import { Grid } from '@mui/material';
 import { setAirdropStatus } from 'utils/store/features/airdropStatusSlice';
-import { setCardanoWalletAddress, setCardanoMapedDate, setEligibile } from 'utils/store/features/walletSlice';
+import {
+  setCardanoWalletAddress,
+  setCardanoMapedDate,
+  setEligibile,
+  setCardanowalletName,
+} from 'utils/store/features/walletSlice';
 import { getDateInStandardFormat } from 'utils/date';
 
 export const getStaticProps = async ({ locale }) => ({
@@ -159,6 +164,7 @@ const Home: NextPage = () => {
       const reasonForRejection = data.reject_reason;
       const airdropRewards = data.airdrop_window_rewards;
       const cardanoAddress = data.registration_details?.other_details?.cardanoAddress || null;
+      const cardanoWalletName = data.registration_details?.other_details?.cardanoWalletName || null;
       const cardanoMapedDate = data.registration_details?.registered_at || null;
       const registrationId = data.registration_id;
       const isClaimable = data.is_claimable;
@@ -181,6 +187,7 @@ const Home: NextPage = () => {
       }
       setRegistrationId(registrationId);
       dispatch(setCardanoWalletAddress(cardanoAddress));
+      dispatch(setCardanowalletName(cardanoWalletName));
       dispatch(setCardanoMapedDate(cardanoMapedDate ? getDateInStandardFormat(cardanoMapedDate) : null));
       dispatch(setEligibile(isEligible ? UserEligibility.ELIGIBLE : UserEligibility.NOT_ELIGIBLE));
       setAirdropwindowRewards(airdropRewards);

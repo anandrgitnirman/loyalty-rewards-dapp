@@ -168,7 +168,7 @@ export default function AirdropRegistration({
   };
 
   const handleMapCardanoWallet = async () => {
-    startLoader(LOADER_MESSAGE.MAP_CARDANO_WALLET_PROGRESS);
+    startLoader(LOADER_MESSAGE.MAP_CARDANO_WALLET_PROGRESS.replace('{wallet}', cardanoWalletName));
     try {
       await connectWallet(cardanoWalletName);
       const cardanoAddress = await getChangeAddress();
@@ -214,6 +214,10 @@ export default function AirdropRegistration({
   const windowName = windowStatusLabelMap[activeWindow?.airdrop_window_status ?? ''];
   const windowAction = windowStatusActionMap[activeWindow?.airdrop_window_status ?? ''];
 
+  const formateNumber = (number) =>
+    Number(number)
+      .toFixed(8)
+      .replace(/\.?0+$/, '');
   return (
     <>
       <Modal
@@ -337,7 +341,7 @@ export default function AirdropRegistration({
                       fontSize={24}
                       mt={1}
                     >
-                      {airdropWindowrewards / AIRDROP_TOKEN_DIVISOR} {stakeInfo.token_name}
+                      {formateNumber(airdropWindowrewards / AIRDROP_TOKEN_DIVISOR)} {stakeInfo.token_name}
                     </Typography>
                   </Box>
                   <Container
@@ -375,7 +379,15 @@ export default function AirdropRegistration({
                 </>
               ) : null}
               {uiAlert.message ? (
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 3, mb: 3 }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    mt: 3,
+                    mb: 3,
+                  }}
+                >
                   <SnetAlert type={uiAlert.type} error={uiAlert.message} />
                 </Box>
               ) : null}
@@ -438,7 +450,7 @@ export default function AirdropRegistration({
                   <Typography fontFamily="MuliSemiBold" align="center" color="textAdvanced.secondary" variant="h5">
                     Your Airdrop History
                   </Typography>
-                  <Box display={'flex'} justifyContent={'center'} mt={2}>
+                  <Box display="flex" justifyContent="center" mt={2}>
                     <Grid className={classes.mappedWalletDateTimeContainer} xs={9}>
                       <Typography color="textAdvanced.dark" fontSize={14} fontWeight={600} fontFamily="MuliSemiBold">
                         Cardano Wallet Mapped

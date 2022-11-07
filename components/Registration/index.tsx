@@ -1,5 +1,7 @@
 import Box from '@mui/material/Box';
-import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
+import React, {
+  FunctionComponent, useEffect, useMemo, useState,
+} from 'react';
 import { useActiveWeb3React } from 'snet-ui/Blockchain/web3Hooks';
 import axios from 'utils/Axios';
 import { setCardanoWalletAddress, setShowConnectionModal } from 'utils/store/features/walletSlice';
@@ -86,14 +88,14 @@ const Registration: FunctionComponent<RegistrationProps> = ({
   const airdropContract = useAirdropContract();
 
   const { window: activeWindow, totalWindows } = useAppSelector(selectActiveWindow);
-  const { cardanoWalletAddress } = useAppSelector((state) => state.wallet);
+  const { cardanoWalletAddress, cardanoWalletName } = useAppSelector((state) => state.wallet);
   const { transferTokens } = useInjectableWalletHook([supportedCardanoWallets.NAMI]);
 
   const dispatch = useAppDispatch();
   const classes = useStyles();
 
   useEffect(() => {
-    setClaimInitiated(claimStatus === ClaimStatus.NOT_STARTED ? false : true);
+    setClaimInitiated(claimStatus !== ClaimStatus.NOT_STARTED);
   }, [claimStatus]);
 
   useEffect(() => {
@@ -128,14 +130,14 @@ const Registration: FunctionComponent<RegistrationProps> = ({
       activeWindow?.airdrop_window_status === WindowStatus.UPCOMING
         ? moment.utc(`${activeWindow?.airdrop_window_registration_start_period}`)
         : activeWindow?.airdrop_window_status === WindowStatus.REGISTRATION
-        ? moment.utc(`${activeWindow?.airdrop_window_registration_end_period}`)
-        : activeWindow?.airdrop_window_status === WindowStatus.IDLE
-        ? moment.utc(`${activeWindow?.airdrop_window_claim_start_period}`)
-        : activeWindow?.airdrop_window_status === WindowStatus.CLAIM ||
+          ? moment.utc(`${activeWindow?.airdrop_window_registration_end_period}`)
+          : activeWindow?.airdrop_window_status === WindowStatus.IDLE
+            ? moment.utc(`${activeWindow?.airdrop_window_claim_start_period}`)
+            : activeWindow?.airdrop_window_status === WindowStatus.CLAIM ||
           activeWindow?.airdrop_window_status === WindowStatus.LAST_CLAIM
-        ? moment.utc(`${activeWindow?.next_window_start_period}`)
-        : moment.utc(),
-    [activeWindow]
+              ? moment.utc(`${activeWindow?.next_window_start_period}`)
+              : moment.utc(),
+    [activeWindow],
   );
 
   const getStakeDetails = async () => {
@@ -166,7 +168,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
 
       const { signature, blockNumber } = await ethSign.sign(
         ['uint256', 'uint256', 'uint256', 'address', 'string'],
-        [Number(activeWindow?.airdrop_id), Number(activeWindow?.airdrop_window_id), cardanoAddress]
+        [Number(activeWindow?.airdrop_id), Number(activeWindow?.airdrop_window_id), cardanoAddress],
       );
 
       console.log('signature', signature);
@@ -212,7 +214,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
     });
 
     const isClaimInitiated = response.data.data.claim_history.some(
-      (obj) => obj.airdrop_window_id === activeWindow.airdrop_window_id
+      (obj) => obj.airdrop_window_id === activeWindow.airdrop_window_id,
     );
 
     const tempHistory: any = [];
@@ -237,7 +239,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
       }, {}).airdrop_window_order || 0;
 
     const claimInProgress = tempHistory.some(
-      (obj) => obj.airdrop_window_id === activeWindow.airdrop_window_id && obj.txn_status !== ClaimStatus.SUCCESS
+      (obj) => obj.airdrop_window_id === activeWindow.airdrop_window_id && obj.txn_status !== ClaimStatus.SUCCESS,
     );
     if (claimInProgress) {
       setUiAlert({ type: AlertTypes.info, message: AIRDROP_CLAIM_IN_PROGRESS_STRING });
@@ -315,7 +317,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
       stakingAddress: string,
       tokenAddress: string,
       userWalletAddress: string,
-      contractAddress: string
+      contractAddress: string,
     ): Promise<TransactionResponse> => {
       const txn = await airdropContract.stake(
         contractAddress,
@@ -326,7 +328,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
         stakeDetails.stakable_tokens,
         activeWindow.airdrop_id?.toString(),
         activeWindow.airdrop_window_id?.toString(),
-        signature
+        signature,
       );
       return txn;
     };
@@ -354,7 +356,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
         stakeDetails.staking_contract_address,
         stakeDetails.token_address,
         stakeDetails.user_address,
-        stakeDetails.contract_address
+        stakeDetails.contract_address,
       );
 
       await saveClaimTxn(txn.hash, stakeDetails.claimable_amount);
@@ -435,7 +437,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
       tokenAddress: string,
       signature: string,
       totalEligibleAmount: string,
-      claimAmount: string
+      claimAmount: string,
     ): Promise<TransactionResponse> => {
       const txn = await airdropContract.claim(
         contractAddress,
@@ -444,7 +446,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
         claimAmount,
         activeWindow.airdrop_id?.toString(),
         activeWindow.airdrop_window_id?.toString(),
-        signature
+        signature,
       );
       return txn;
     };
@@ -470,7 +472,12 @@ const Registration: FunctionComponent<RegistrationProps> = ({
         registrationId,
       };
       const depositAmount = new BigNumber(claimDetails.chain_context.amount).times(10 ** 6).toFixed();
-      const txnHash = await transferTokens('nami', claimDetails.chain_context.deposit_address, depositAmount, matadata);
+      const txnHash = await transferTokens(
+        cardanoWalletName.toLowerCase(),
+        claimDetails.chain_context.deposit_address,
+        depositAmount,
+        matadata,
+      );
       await saveClaimTxn(txnHash, claimDetails.chain_context.amount);
       toggleClaimSuccessModal();
       getClaimHistory();
@@ -520,7 +527,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
     address: string,
     blockNumber: number,
     signature: string,
-    cardanoAddress: string
+    cardanoAddress: string,
   ) => {
     try {
       const payload = {
@@ -530,11 +537,12 @@ const Registration: FunctionComponent<RegistrationProps> = ({
         airdrop_window_id: activeWindow?.airdrop_window_id,
         block_number: blockNumber,
         cardano_address: cardanoAddress,
+        cardano_wallet_name: cardanoWalletName.toLowerCase(),
       };
       await axios.post('airdrop/registration', payload).then((response) => {
         if (response?.data?.data?.length) {
           const [{ receipt }] = response.data.data.filter(
-            (item) => item.airdrop_window_id === activeWindow?.airdrop_window_id
+            (item) => item.airdrop_window_id === activeWindow?.airdrop_window_id,
           );
           setRegistrationId(receipt);
         }

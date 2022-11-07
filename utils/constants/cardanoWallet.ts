@@ -8,6 +8,12 @@ export const supportedCardanoWallets = [
     site: 'https://namiwallet.io/',
   },
   {
+    wallet: 'Eternl',
+    identifier: 'eternl',
+    logo: 'images/eternal_logo.svg',
+    site: 'https://eternl.io/'
+  },
+  {
     wallet: 'Flint',
     identifier: 'flint',
     logo: 'https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/61fc134d309b3e16a84897f6_Flint%20Wallet.png',
@@ -30,6 +36,7 @@ export const supportedCardanoWallets = [
 export const cardanoWalletExtensionError = 'WALLET_EXTENSION_NOT_FOUND';
 export const walletExtensions = {
   Matamask: 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn',
+  Eternl: 'https://chrome.google.com/webstore/detail/eternl/kmhcihpebfmpgmihbkipmjlmmioameka',
   Nami: 'https://chrome.google.com/webstore/detail/nami/lpfcbjknijpeeillifnkikgncikgfhdo',
   Flint: 'https://chrome.google.com/webstore/detail/flint-wallet/hnhobjmcibchnmglfbldbfabcgaknlkj',
   CWallet: 'https://chrome.google.com/webstore/detail/cwallet/apnehcjmnengpnmccpaibjmhhoadaico',

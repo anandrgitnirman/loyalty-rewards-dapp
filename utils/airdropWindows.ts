@@ -51,8 +51,7 @@ export const AIRDROP_CHECK_RULES_SCHEDULE = 'Please check the rules and schedule
 export const AIRDROP_HOW_IT_WORKS_STRING = 'How Loyality Rewards Works';
 export const AIRDROP_TITLE_STRING = 'Loyality Rewards Info:';
 export const AIRDROP_DESCRIPTION_STRING =
-  'During the first year of Phase Two, 5% of the monthly tranches will be allotted to Phase One AGI (ERC-20) token holders ' +
-  'as a reward for loyality and to incentivize participation in the Phase II network.';
+  'During the first year of Phase Two, this 5% of the monthly tranches will be allotted to Phase One AGI (ERC-20) token holders as a reward for loyalty and to incentivize participation in the Phase II network. The specifics of this distribution are currently being worked out together with legal counsel as there are subtleties regarding “airdrops” and similar mechanisms in various jurisdictions. The utilization of the Loyalty Reward token pool after the first year may be changed via democratic vote of token-holders';
 export const AIRDROP_CLAIM_IN_PROGRESS_STRING = 'Your Claim is in progress';
 
 export const AIRDROP_LINKS = {
@@ -74,46 +73,45 @@ export const AIRDROP_RULES = [
     description: 'TBD',
   },
   {
-    title: 'Registration',
+    title: 'Registration Requirements',
     description:
-      'You must register your Cardano wallet address on this portal to claim your loyality rward. Registration does not cost gas fees, claiming the rewards does cost gas fees.',
+      'None. If your address has received AGIX during the hardfork, it will be eligible to claim loyalty rewards. Users can claim each allocation once it becomes available, or claim all released allocations in one transaction',
+  },
+  {
+    title: 'KYC requirements',
+    description: 'None',
+  },
+  {
+    title: 'Claiming End Date',
+    description:
+      'Phase 1 holders have 3 years to claim their year 1 loyalty rewards, up until November 22nd 2025, 11am UTC',
+  },
+  {
+    title: 'Cardano Claiming Special Instructions',
+    description:
+      'Due to the way that transferring a native asset on the Cardano network works, users will need to deposit about 2 ADA from the wallet they are claiming the rewards to (in order to cover for sending the AGIX tokens). Users will receive these back together with the AGIX Loyalty Reward Tokens.',
   },
 ];
 
 export const HOW_IT_WORKS = [
   {
-    title: 'Requirements for Loyality rewards',
+    title: 'Eligibility',
     description:
-      'Users will be eligible for the airdrop if they meet two conditions: they must hold a minimum of 2500 ' +
-      'AGIX tokens in their wallets at all times during the snapshot periods, and they must register their ' +
-      'wallet address here in this portal during every registration period. Registration does not cost gas fees, claiming the rewards does cost gas fees.',
+      'Snapshot: May 28th, 2021, at 08:00:20 AM UTC+0 (Hardfork snapshot of AGI holders). Eligibility restricted to Private wallets only - Token balances which were held on Binance/Kucoin or other centralized exchanges or smart contracts during the hardfork are not eligible. Minimum AGI required for eligibility: 10 AGI',
   },
   {
-    title: 'Registration for Loyality rewards',
-    description: 'Participants need to register their cardano address to claim their loyality rewards, ',
+    title: 'Allocation',
+    description: 'Rewards are proportional to token balance during the snapshot, +20% bonus for stakers. Staking Bonus: AGI Tokens which were staked on staking.singularitynet.io at the time of the snapshot will qualify for a 20% bonus on top of the allocated loyalty rewards',
   },
   {
-    title: 'Claiming Rewards',
+    title: 'Total Year 1 tokens to Distribute',
     description:
-      'You can claim your Loyality rewards on this portal as they become available in the quarterly tranches, ' +
-      'or you can opt to accumulate them until the end in order to save gas fees. ' +
-      'You must claim your tokens before November 22th 2022 11 AM UTC; any tokens not claimed by ' +
-      'then will be returned to the loyality pool',
+      '8,293,401 AGIX, in 6 equal batches.',
   },
   {
-    title: 'Requirements for Loyality rewards',
+    title: 'Distribution periods',
     description:
-      'Users will be eligible for the airdrop if they meet two conditions: they must hold a minimum of 2500 ' +
-      'AGIX tokens in their wallets at all times during the snapshot periods, and they must register their ' +
-      'wallet address here in this portal during every registration period. Registration does not cost gas fees, claiming the rewards does cost gas fees.',
-  },
-  {
-    title: 'Claiming Rewards',
-    description:
-      'You can claim your Loyality rewards on this portal as they become available in the quarterly tranches, ' +
-      'or you can opt to accumulate them until the end in order to save gas fees. ' +
-      'You must claim your tokens before November 22th 2022 11 AM UTC; any tokens not claimed by ' +
-      'then will be returned to the loyality pool',
+      'There will be six monthly allocations, starting November 22nd, 2022 and running to March 21st, 2023',
   },
 ];
 
@@ -148,7 +146,7 @@ export const windowStatusLabelMap = {
 };
 
 export const LOADER_MESSAGE = {
-  MAP_CARDANO_WALLET_PROGRESS: 'Mapping to your Cardano wallet Nami in progress',
+  MAP_CARDANO_WALLET_PROGRESS: 'Mapping to your Cardano wallet {wallet} in progress',
   CLAIM_PROGRESS: 'Claim in progress',
 };
 
@@ -165,8 +163,7 @@ export const findActiveWindow = (windows: AirdropWindow[]): AirdropWindow | unde
     .sort((windowA, windowB) => windowA.airdrop_window_id - windowB.airdrop_window_id);
 
   const todayDate = moment.utc(new Date());
-  const isUpcomming =
-  checkDateIsGreaterThan(moment.utc(sortedWindows[0].airdrop_window_claim_start_period), todayDate);
+  const isUpcomming = checkDateIsGreaterThan(moment.utc(sortedWindows[0].airdrop_window_claim_start_period), todayDate);
   let activeWindow = sortedWindows[0];
   activeWindow.airdrop_window_status = isUpcomming ? WindowStatus.IDLE : WindowStatus.CLAIM;
   activeWindow.next_window_start_period = isUpcomming

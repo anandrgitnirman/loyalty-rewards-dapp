@@ -20,7 +20,7 @@ export type WalletState = {
 const initialState: WalletState = {
   showConnectionModal: false,
   cardanoWalletAddress: null,
-  cardanoWalletName: 'Nami',
+  cardanoWalletName: '',
   startMappingCardano: false,
   cardanoMapedDate: null,
   walletExtentionError: null,
