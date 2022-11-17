@@ -75,7 +75,7 @@ export default function EligibilityBanner({
         <Grid item xs={12} md={6} className={classes.walletDetailsContainer}>
           <Avatar alt={supportedEtherumWallet.name} src={supportedEtherumWallet.logoUrl} />
           <div>
-            <span>Connected Wallet Address</span>
+            <span>Connected Ethereum Wallet address</span>
             <Button onClick={(e) => onClickCopy(account, 'etherum')}>
               <Typography noWrap variant="priority" component="p">
                 {addEllipsisInBetweenString(account)}

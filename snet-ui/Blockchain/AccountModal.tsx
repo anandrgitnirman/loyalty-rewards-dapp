@@ -26,7 +26,7 @@ type AccountModalProps = {
   onClose: () => void;
 };
 
-export default function AccountModal({ open, onClose }: AccountModalProps) {
+export default function AccountModal({ open, onClose, ethWalletName }: AccountModalProps) {
   const { account, chainId, deactivate } = useActiveWeb3React();
   const { cardanoWalletAddress, cardanoWalletName, isEligible } = useAppSelector((state) => state.wallet);
   const [copyEth, setCopyETh] = useState('copy');
@@ -85,15 +85,20 @@ export default function AccountModal({ open, onClose }: AccountModalProps) {
           <Grid container className={classes.ethAccountDetails}>
             <Grid item md={5}>
               <Box className={classes.walletAccDetails}>
-                <img src="/images/walletAccount_connectWallet.svg" alt="Wallet Connect" />
-                <Typography variant="h4">Wallet Connect</Typography>
+                <img
+                  src={ethWalletName === 'MetaMask' ? '/Metamask.png' : '/images/walletAccount_connectWallet.svg'}
+                  alt="Wallet Connect"
+                />
+                <Typography variant="h4">
+                  {ethWalletName === 'MetaMask' ? 'Metamask' : 'Wallet Connect'}
+                </Typography>
               </Box>
             </Grid>
             <Grid item md={7}>
               <Box className={classes.connectedWalletDetails}>
                 <Box>
                   <span variant="body1">Type</span>
-                  <span>Etherum</span>
+                  <span>Ethereum</span>
                 </Box>
                 <Box>
                   <span>Network:</span>
@@ -155,18 +160,36 @@ export default function AccountModal({ open, onClose }: AccountModalProps) {
                   <span variant="body1">Wallet:</span>
                   <span>{cardanoWalletName}</span>
                 </Box>
+                <Box>
+                  <span variant="body1">Type</span>
+                  <span>Cardano</span>
+                </Box>
+                <Box>
+                  <span>Network:</span>
+                  <span>{chainId === 1 ? 'Mainnet Network' : 'Ropsten Test Network'}</span>
+                </Box>
                 <Typography className={classes.accountNo}>
                   <AccountBalanceWalletIcon />
                   {cardanoWalletAddress}
                 </Typography>
-                <Button
-                  variant="text"
-                  onClick={() => onCopyAddress(true)}
-                  startIcon={<CopyIcon />}
-                  className={classes.copyBtn}
-                >
-                  {copyCardano}
-                </Button>
+                <Box className={classes.ethAccBtnContainer}>
+                  <Button
+                    variant="text"
+                    onClick={() => onCopyAddress(false)}
+                    startIcon={<CopyIcon />}
+                    className={classes.copyBtn}
+                  >
+                    {copyCardano}
+                  </Button>
+                  <Button
+                    onClick={disconnectWallet}
+                    variant="text"
+                    startIcon={<LogoutIcon />}
+                    className={classes.disconnectBtn}
+                  >
+                    Disconnect
+                  </Button>
+                </Box>
               </Grid>
             )}
           </Grid>

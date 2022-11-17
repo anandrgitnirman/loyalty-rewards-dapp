@@ -7,7 +7,7 @@ export const data = [
       'Go through the whitepaper to understand the technical information, concept and roadmap of the project.',
   },
   {
-    link: 'https://t.me/NuNet_Community',
+    link: 'https://t.me/singularitynet',
     img: '/images/Telegram.png',
     title: 'Telegram Community',
     description:

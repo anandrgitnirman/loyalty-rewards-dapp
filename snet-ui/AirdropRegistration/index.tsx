@@ -371,8 +371,7 @@ export default function AirdropRegistration({
                         sx={{ mx: 1, fontSize: 14, lineHeight: '21px' }}
                       >
                         You can start claiming your tokens now. It is possible to claim all tokens with the last airdrop
-                        window which allow you save on the gas cost fees. However we recommend you claim your tokens at
-                        each window claim time.
+                        window which allow you save on the gas cost fees.
                       </Typography>
                     </Box>
                   </Container>
@@ -437,7 +436,7 @@ export default function AirdropRegistration({
                 <Box display="flex" justifyContent="center">
                   <Box className={classes.claimedContainer}>
                     <Typography fontFamily="MuliRegular" color="text.secondary" fontSize="14px">
-                      Airdrop Windows Claimed
+                      Loyalty Rewards Windows Claimed
                     </Typography>
                     <Typography fontFamily="MuliSemiBold" color="text.secondary" fontSize="24px" fontWeight="600">
                       {`${claimedWindow} / ${totalWindows}`}

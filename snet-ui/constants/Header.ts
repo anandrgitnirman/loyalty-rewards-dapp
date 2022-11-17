@@ -3,7 +3,7 @@ import { AIRDROP_SITE_STRING, AIRDROP_LINKS } from 'utils/airdropWindows';
 export const navData = [
   {
     id: 3,
-    name: `${AIRDROP_SITE_STRING} Site`,
+    name: `${AIRDROP_SITE_STRING} website`,
     url: `${AIRDROP_LINKS.WEBSITE}`,
     external: true,
   },

@@ -8,7 +8,6 @@ import Head from 'next/head';
 import HowItWorks from 'snet-ui/HowItWorks';
 import Box from '@mui/material/Box';
 import SubscribeToNotification from 'snet-ui/SubscribeToNotification';
-import Ecosystem from 'snet-ui/Ecosystem';
 import CommonLayout from 'layout/CommonLayout';
 import Registration from 'components/Registration';
 import Airdroprules from 'snet-ui/Airdroprules';
@@ -21,7 +20,7 @@ import { API_PATHS } from 'utils/constants/ApiPaths';
 import {
   findActiveWindow,
   AIRDROP_LINKS,
-  AIRDROP_HOW_IT_WORKS_STRING,
+  AIRDROP_HOW_IT_WORK_STRING,
   HOW_IT_WORKS,
   AIRDROP_TITLE_STRING,
   AIRDROP_RULES,
@@ -245,7 +244,7 @@ const Home: NextPage = () => {
       </Grid>
       <HowItWorks
         ref={howitworksRef}
-        title={AIRDROP_HOW_IT_WORKS_STRING}
+        title={AIRDROP_HOW_IT_WORK_STRING}
         steps={HOW_IT_WORKS}
         blogLink={AIRDROP_LINKS.BLOG_POST}
       />
@@ -257,7 +256,6 @@ const Home: NextPage = () => {
         ref={rulesRef}
       />
       <AirdropSchedules ref={scheduleRef} schedules={schedules} />
-      <Ecosystem blogLink="https://singularitynet.io/" />
       <FAQ />
     </CommonLayout>
   );

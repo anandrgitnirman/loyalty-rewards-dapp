@@ -32,10 +32,6 @@ export default function HowItWorks({ title, steps, blogLink, ref }: HowItWorksPr
         <ul className={classes.howItWorksContent}>
           {steps.map((step, index) => (
             <li key={step.title}>
-              <Box className={classes.noContainer}>
-                <Typography variant="caption">Step</Typography>
-                <Typography variant="h3">{index + 1}</Typography>
-              </Box>
               <Box className={classes.actualContent}>
                 <Typography component="span">{step.title}</Typography>
                 <Typography component="p">{step.description}</Typography>

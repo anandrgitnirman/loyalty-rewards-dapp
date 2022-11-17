@@ -7,7 +7,11 @@ export default function Falsemessage() {
   return (
     <Box className={classes.falseMsgContainer}>
       <Typography className={classes.message} variant="body2">
-        Beware of false or phishing sites. Please double check the URLs before you continue.
+        Beware of false or phishing sites. Please double check the{' '}
+        <a href="https://loyalty.singularitynet.io/" title="Loyalty Airdrop" target="_blank">
+          URL
+        </a>{' '}
+        before you continue.
       </Typography>
     </Box>
   );

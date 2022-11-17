@@ -57,7 +57,7 @@ const AirdropWindow: FunctionComponent<AirdropWindowProps> = () => {
   return (
     <>
       <Head>
-        <title>Loyality Airdrop</title>
+        <title>Loyalty Airdrop</title>
       </Head>
       <Header onConnectWallet={() => dispatch(setShowConnectionModal(true))} />
       <Grid container spacing={2}>

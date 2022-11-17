@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       lineHeight: '29px',
       fontFamily: 'MuliRegular',
       color: `${theme.palette.textAdvanced.dark}`,
+      '&:first-of-type': { marginBottom: 0 },
       "@media (max-width:900px)": { margin: '25px 0' },
     },
     '& button': {

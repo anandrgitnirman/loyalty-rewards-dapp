@@ -107,7 +107,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
         setUiAlert({
           type: AlertTypes.error,
           message:
-            'Your connected wallet is not eligible to map to a cardano wallet.  Please connect a compatible ETH wallet with avlialble AGIX funds.',
+            'Your connected wallet is not eligible to map to a cardano wallet.  Please connect a compatible ETH wallet with available AGIX funds.',
         });
       }
       if (userEligibility === UserEligibility.ELIGIBLE) {

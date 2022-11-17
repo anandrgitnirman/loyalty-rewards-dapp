@@ -11,6 +11,8 @@ import { AppBar, Toolbar, useTheme } from '@material-ui/core';
 import DrawerComponent from './DrawerComponent';
 import SNETButton from '../SNETButton';
 import { useAppSelector } from 'utils/store/hooks';
+import { useWeb3React } from '@web3-react/core';
+import { SUPPORTED_WALLETS } from '../Blockchain/Wallet';
 
 type HeaderProps = {
   account?: string;
@@ -26,9 +28,16 @@ const Header = ({ onConnectWallet, onDisconnect, account }: HeaderProps) => {
   const { cardanoWalletAddress } = useAppSelector((state) => state.wallet);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const [ethWalletName, setEthWalletName] = React.useState('');
   const classes = headerStyles();
+  const { connector } = useWeb3React();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    Object.keys(SUPPORTED_WALLETS).map((key) => {
+      if (connector === SUPPORTED_WALLETS[key].connector) {
+        setEthWalletName(SUPPORTED_WALLETS[key].name);
+      }
+    });
     setAnchorEl(event.currentTarget);
   };
 
@@ -50,7 +59,7 @@ const Header = ({ onConnectWallet, onDisconnect, account }: HeaderProps) => {
           <a href="/" className={classes.logoAnchor}>
             <img src="/AppLogo.svg" alt="SingularityNET" />
           </a>
-          <span>Loyality Rewards</span>
+          <span>Loyalty Rewards</span>
         </div>
         {isMobile ? (
           <DrawerComponent
@@ -76,7 +85,7 @@ const Header = ({ onConnectWallet, onDisconnect, account }: HeaderProps) => {
                       </p>
                     </div>
                   </Button>
-                  <AccountModal open={open} onClose={handleUserMenuClose} />
+                  <AccountModal open={open} onClose={handleUserMenuClose} ethWalletName={ethWalletName} />
                 </div>
               ) : (
                 <div className={classes.rightButton}>
