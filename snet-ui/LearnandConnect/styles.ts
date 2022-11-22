@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles((theme: Theme) => ({
   learnConnectContainer: {
     padding: '63px 0',
-    backgroundColor: `${theme.palette.bgFocus.main}`,
+    backgroundColor: `${theme.palette.bgHighlight.main}`,
     '& h2': {
       marginBottom: 41,
       color: `${theme.palette.info.main}`,
@@ -20,12 +20,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: 0,
     margin: 0,
     display: 'flex',
+    justifyContent: 'center',
     '@media(max-width:900px)': { flexDirection: 'column' },
   },
   learnConnectCard: {
     width: '33%',
     borderRadius: 6,
-    marginRight: 24,
+    marginRight: 50,
     backgroundColor: `${theme.palette.common.white}`,
     boxShadow: '0 1px 3px 0 rgba(0,0,0,0.2)',
     listStyle: 'none',

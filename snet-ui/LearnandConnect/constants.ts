@@ -13,10 +13,4 @@ export const data = [
     description:
       'Did not find the answers you were looking for?  Reach out to us and we will response to your questions as soon as possible.',
   },
-  {
-    link: 'https://dev.singularitynet.io/',
-    img: '/images/Documentation.png',
-    title: 'View Documentation',
-    description: 'Learn more about the stages of the airdrop process and how the airdrop rewards are calculated.',
-  },
 ];

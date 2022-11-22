@@ -33,7 +33,7 @@ const PrimaryFooterMainLinks = [
       { label: 'Discord', link: 'https://discord.com/invite/snet', internalLink: false },
       { label: 'Forum', link: 'https://community.singularitynet.io/', internalLink: false },
       { label: 'Official Blog', link: 'https://blog.singularitynet.io/singularitynet-phase-two-loyalty-rewards-c8de0926bf8e ', internalLink: false },
-      { label: 'Devloper Portal', link: 'https://dev.singularitynet.io/', internalLink: false },
+      { label: 'Developer Portal', link: 'https://dev.singularitynet.io/', internalLink: false },
     ],
   },
 ];

@@ -99,6 +99,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       '& a': { color: `${theme.palette.alertMsg.pendingBorder}` },
     },
   },
+  readDocText: {
+    '& button': {
+      border: 'none',
+      background: `${theme.palette.common.white}`,
+      color: `${theme.palette.alertMsg.pendingBorder}`,
+      cursor: 'pointer',
+    }
+  },
   // Account Modal styles
   accountModalDialog: {
     '& .MuiDialog-paperScrollPaper': {

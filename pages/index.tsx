@@ -126,6 +126,7 @@ const Home: NextPage = () => {
 
     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
   };
+
   const handleScrollToLink = (scrollToKey?: string) => {
     if (scrollToKey === 'schedule') {
       handleScrollToView(scheduleRef);

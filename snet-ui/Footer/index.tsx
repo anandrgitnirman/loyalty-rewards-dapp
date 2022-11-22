@@ -44,22 +44,22 @@ function Footer({ handleScrollToLink }: FooterProps) {
             <Box className={classes.socialIconsNewsletterContainer}>
               <ul>
                 {/* <li>
-                  <a href="#" title="Medium">
+                  <a href="https://blog.singularitynet.io/" title="Medium" target="_blank" rel="noreferrer">
                     <img src="/images/medium_logo.png" alt="Medium" />
                   </a>
                 </li> */}
                 <li>
-                  <a href="#" title="Telegram">
+                  <a href="https://telegram.me/singularitynet" title="Telegram" target="_blank" rel="noreferrer">
                     <TelegramIcon />
                   </a>
                 </li>
                 {/* <li>
-                  <a href="#" title="Discord">
+                  <a href="https://discord.com/invite/snet" title="Discord" target="_blank" rel="noreferrer">
                     <img src="/images/discord_logo.png" alt="Medium" />
                   </a>
                 </li> */}
                 <li>
-                  <a href="https://twitter.com/nunet_global" title="Twiiter">
+                  <a href="https://twitter.com/nunet_global" title="Twiiter" target="_blank" rel="noreferrer">
                     <TwitterIcon />
                   </a>
                 </li>
@@ -67,17 +67,24 @@ function Footer({ handleScrollToLink }: FooterProps) {
                   <a
                     href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQFsrH9KRTb3RwAAAYIgIWoIi8ZbvpUcCv28D1l_s7PjjHYeCceWmDj6nz4shklegkWwej-DCGJCRVw0mQfUvHo7JSxp3ekY6LiB66rlu_00DWlGPFq5-FvZuMNMYRe_tnWT8V8=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fnunet-global%2F"
                     title="LinkedIn"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <LinkedInIcon />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/NunetGlobal" title="Facebook">
+                  <a href="https://www.facebook.com/NunetGlobal" title="Facebook" target="_blank" rel="noreferrer">
                     <FacebookIcon />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.youtube.com/channel/UCLTTOrMYDTbQYHs1HCFPtfA" title="Youtube">
+                  <a
+                    href="https://www.youtube.com/channel/UCLTTOrMYDTbQYHs1HCFPtfA"
+                    title="Youtube"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <YouTubeIcon />
                   </a>
                 </li>
@@ -120,12 +127,13 @@ function Footer({ handleScrollToLink }: FooterProps) {
           <Grid item sm={12}>
             <span>© 2022 SingularityNET.</span>
             <p>
-              <a href="#" title="Cookie concent policy">
-                Cookie concent policy
-              </a>{' '}
-              and{' '}
-              <a href="#" title="Privacy Policy">
-                Privacy Policy.
+              <a
+                href="https://public.singularitynet.io/privacy_policy.html"
+                title="Privacy Policy"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Cookie concent policy and Privacy Policy.
               </a>
             </p>
           </Grid>

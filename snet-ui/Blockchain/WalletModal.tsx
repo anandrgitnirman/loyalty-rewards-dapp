@@ -103,6 +103,10 @@ export default function WalletModal({ open, setOpen }: Props) {
     }
   };
 
+  const handleReadDoc = () => {
+    handleClose();
+  };
+
   return (
     <div>
       <Dialog open={open} onClose={handleClose} className={classes.connectWalletDialog}>
@@ -133,13 +137,10 @@ export default function WalletModal({ open, setOpen }: Props) {
               </Grid>
             </Grid>
 
-            <Typography>
+            {/* <Typography className={classes.readDocText}>
               Need help connecting a wallet?
-              <Typography component="a" href="#" variant="link">
-                {' '}
-                Read our documentation
-              </Typography>
-            </Typography>
+              <button onClick={handleReadDoc}> Read our documentation</button>
+            </Typography> */}
           </Box>
 
           <Box className={classes.connectWalletFooter}>
