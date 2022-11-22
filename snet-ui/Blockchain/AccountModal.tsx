@@ -89,9 +89,7 @@ export default function AccountModal({ open, onClose, ethWalletName }: AccountMo
                   src={ethWalletName === 'MetaMask' ? '/Metamask.png' : '/images/walletAccount_connectWallet.svg'}
                   alt="Wallet Connect"
                 />
-                <Typography variant="h4">
-                  {ethWalletName === 'MetaMask' ? 'Metamask' : 'Wallet Connect'}
-                </Typography>
+                <Typography variant="h4">{ethWalletName === 'MetaMask' ? 'Metamask' : 'Wallet Connect'}</Typography>
               </Box>
             </Grid>
             <Grid item md={7}>
@@ -102,7 +100,7 @@ export default function AccountModal({ open, onClose, ethWalletName }: AccountMo
                 </Box>
                 <Box>
                   <span>Network:</span>
-                  <span>{chainId === 1 ? 'Mainnet Network' : 'Ropsten Test Network'}</span>
+                  <span>{chainId === 1 ? 'Mainnet Network' : 'Goerli Test Network'}</span>
                 </Box>
                 <Typography className={classes.accountNo}>
                   <AccountBalanceWalletIcon />
@@ -152,7 +150,7 @@ export default function AccountModal({ open, onClose, ethWalletName }: AccountMo
                     </ListItem>
                   ))}
                 </List>
-                <Typography>Please note once wallet is maped you cannot change it.</Typography>
+                <Typography>Please note once wallet is mapped you cannot change it.</Typography>
               </Grid>
             ) : (
               <Grid md={7} className={classes.connectedWalletDetails}>
@@ -166,13 +164,13 @@ export default function AccountModal({ open, onClose, ethWalletName }: AccountMo
                 </Box>
                 <Box>
                   <span>Network:</span>
-                  <span>{chainId === 1 ? 'Mainnet Network' : 'Ropsten Test Network'}</span>
+                  <span>{chainId === 1 ? 'Mainnet Network' : 'Goerli Test Network'}</span>
                 </Box>
                 <Typography className={classes.accountNo}>
                   <AccountBalanceWalletIcon />
                   {cardanoWalletAddress}
                 </Typography>
-                <Box className={classes.ethAccBtnContainer}>
+                {/* <Box className={classes.ethAccBtnContainer}>
                   <Button
                     variant="text"
                     onClick={() => onCopyAddress(false)}
@@ -189,7 +187,7 @@ export default function AccountModal({ open, onClose, ethWalletName }: AccountMo
                   >
                     Disconnect
                   </Button>
-                </Box>
+                </Box> */}
               </Grid>
             )}
           </Grid>

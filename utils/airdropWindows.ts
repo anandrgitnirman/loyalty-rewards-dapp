@@ -91,7 +91,7 @@ export const AIRDROP_RULES = [
   },
   {
     title: 'AGI Balance',
-    description: 'minimum of 10 AGI',
+    description: 'Minimum of 10 AGI',
   },
 ];
 
@@ -108,11 +108,11 @@ export const HOW_IT_WORKS = [
   },
   {
     title: 'Total Year 1 tokens to Distribute',
-    description: 'The Loyalty Rewards pool for year 1 totals 8,239,401 AGIX tokens, distributed in six equal batches.',
+    description: 'The Loyalty Rewards pool for year 1 totals 8,293,398 AGIX tokens, distributed in six equal batches.',
   },
   {
     title: 'Distribution periods',
-    description: 'There will be six monthly allocations, starting November 22nd, 2022 and running to March 21st, 2023.',
+    description: 'There will be six monthly allocations, starting November 22nd, 2022 and the last one becoming available at April 18th, 2023.',
   },
 ];
 

@@ -26,7 +26,12 @@ import Grid from '@mui/material/Grid';
 import { checkDateIsBetween, getDateInStandardFormat } from 'utils/date';
 import Container from '@mui/material/Container';
 import moment from 'moment';
-import { cardanoSupportingWallets, cardanoWalletExtensionError, walletExtensions } from 'utils/constants/cardanoWallet';
+import {
+  cardanoSupportingWallets,
+  cardanoWalletExtensionError,
+  supportedCardanoWallets,
+  walletExtensions,
+} from 'utils/constants/cardanoWallet';
 import useInjectableWalletHook from '../../libraries/useInjectableWalletHook';
 import { useAppDispatch, useAppSelector } from 'utils/store/hooks';
 import { AirdropStatusMessage, UserEligibility } from 'utils/constants/CustomTypes';
@@ -167,10 +172,14 @@ export default function AirdropRegistration({
     }
   };
 
+  const getWalletIdentifier = () => {
+    const [wallet] = supportedCardanoWallets.filter((item) => item.wallet === cardanoWalletName);
+    return wallet?.identifier || '';
+  };
   const handleMapCardanoWallet = async () => {
     startLoader(LOADER_MESSAGE.MAP_CARDANO_WALLET_PROGRESS.replace('{wallet}', cardanoWalletName));
     try {
-      await connectWallet(cardanoWalletName);
+      await connectWallet(getWalletIdentifier());
       const cardanoAddress = await getChangeAddress();
       await onRegister(cardanoAddress);
     } catch (error) {

@@ -1,5 +1,6 @@
 import AddSharpIcon from '@mui/icons-material/AddSharp';
 import { Button } from '@mui/material';
+import ParseHTML from 'html-react-parser';
 import { faqSampleData } from './faq';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
@@ -37,7 +38,7 @@ function FAQPage(_, ref) {
               <Typography>{faq.question}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>{faq.answer}</Typography>
+              <Typography>{ParseHTML(faq.answer)}</Typography>
             </AccordionDetails>
           </Accordion>
         ))}
