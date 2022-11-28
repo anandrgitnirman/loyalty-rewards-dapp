@@ -36,7 +36,7 @@ export default function History({ events }: HistoryProps) {
             </Grid>
             <Grid item xs={3}>
               <Typography color="primary.main" fontSize={12} fontFamily="MuliSemiBold">
-                Reward
+                {event.action_type === TRANSACTION_TYPE.ADA_TRANSFER ? 'ADA Received' : 'Reward'}
               </Typography>
               {event.action_type === TRANSACTION_TYPE.ADA_TRANSFER ? (
                 <Typography color="textAdvanced.dark" fontFamily="MuliRegular" fontSize={14} lineHeight="24px">

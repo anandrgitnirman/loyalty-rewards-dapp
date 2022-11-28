@@ -29,4 +29,10 @@ export const supportedCardanoWallets = [
     logo: 'https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/61281040b3b41b00da5259ec_Cardwallet.png',
     site: 'https://cwallet.finance',
   },
+  {
+    wallet: 'Yoroi',
+    identifier: 'yoroi',
+    logo: 'images/yoroi.png',
+    site: 'https://yoroi-wallet.com/',
+  },
 ];

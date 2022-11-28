@@ -250,9 +250,12 @@ const Registration: FunctionComponent<RegistrationProps> = ({
         el.action_type === TRANSACTION_TYPE.TOKEN_TRANSFER
           ? `${convertAsReadableAmount(el.claimable_amount, 8)} AGIX`
           : `${el.claimable_amount} ADA`;
-
+      const windowText =
+        el.action_type === TRANSACTION_TYPE.ADA_TRANSFER
+          ? `Window ${el.airdrop_window_order} Claim Initiated`
+          : `Window ${el.airdrop_window_order} Rewards`;
       return {
-        window: `Window ${el.airdrop_window_order} Rewards`,
+        window: windowText,
         reward,
         status: `${el.txn_status === ClaimStatus.FAIL ? ClaimStatus.PENDING : el.txn_status}`,
         txn_hash: el.txn_hash,
@@ -390,6 +393,11 @@ const Registration: FunctionComponent<RegistrationProps> = ({
     }
   };
 
+  const getWalletIdentifier = () => {
+    const [wallet] = supportedCardanoWallets.filter((item) => item.wallet === cardanoWalletName);
+    return wallet?.identifier || '';
+  };
+
   const handleClaim = async () => {
     if (
       typeof activeWindow?.airdrop_id === 'undefined' ||
@@ -471,12 +479,13 @@ const Registration: FunctionComponent<RegistrationProps> = ({
         airdropWindowId: activeWindow?.airdrop_window_id?.toString(),
         registrationId,
       };
+      const walletIdentifier = getWalletIdentifier();
       const depositAmount = new BigNumber(claimDetails.chain_context.amount).times(10 ** 6).toFixed();
       const txnHash = await transferTokens(
-        cardanoWalletName.toLowerCase(),
+        walletIdentifier,
         claimDetails.chain_context.deposit_address,
         depositAmount,
-        matadata,
+        matadata
       );
       await saveClaimTxn(txnHash, claimDetails.chain_context.amount);
       toggleClaimSuccessModal();
@@ -537,12 +546,12 @@ const Registration: FunctionComponent<RegistrationProps> = ({
         airdrop_window_id: activeWindow?.airdrop_window_id,
         block_number: blockNumber,
         cardano_address: cardanoAddress,
-        cardano_wallet_name: cardanoWalletName.toLowerCase(),
+        cardano_wallet_name: cardanoWalletName,
       };
       await axios.post('airdrop/registration', payload).then((response) => {
         if (response?.data?.data?.length) {
           const [{ receipt }] = response.data.data.filter(
-            (item) => item.airdrop_window_id === activeWindow?.airdrop_window_id,
+            (item) => item.airdrop_window_id === activeWindow?.airdrop_window_id
           );
           setRegistrationId(receipt);
         }

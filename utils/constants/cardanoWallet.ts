@@ -11,7 +11,7 @@ export const supportedCardanoWallets = [
     wallet: 'Eternl',
     identifier: 'eternl',
     logo: 'images/eternal_logo.svg',
-    site: 'https://eternl.io/'
+    site: 'https://eternl.io/',
   },
   {
     wallet: 'Flint',
@@ -31,6 +31,12 @@ export const supportedCardanoWallets = [
     logo: 'https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/6117f6cf11c2b96621243241_GeroWallet.png',
     site: 'https://gerowallet.io/',
   },
+  {
+    wallet: 'Yoroi',
+    identifier: 'yoroi',
+    logo: 'images/yoroi.png',
+    site: 'https://yoroi-wallet.com/',
+  },
 ];
 
 export const cardanoWalletExtensionError = 'WALLET_EXTENSION_NOT_FOUND';
@@ -41,4 +47,5 @@ export const walletExtensions = {
   Flint: 'https://chrome.google.com/webstore/detail/flint-wallet/hnhobjmcibchnmglfbldbfabcgaknlkj',
   CWallet: 'https://chrome.google.com/webstore/detail/cwallet/apnehcjmnengpnmccpaibjmhhoadaico',
   'Gero Wallet': 'https://chrome.google.com/webstore/detail/gerowallet-testnet/iifeegfcfhlhhnilhfoeihllenamcfgc',
+  Yoroi: 'https://chrome.google.com/webstore/detail/yoroi/ffnbelfdoeiohenkjibnmadjiehjhajb',
 };
