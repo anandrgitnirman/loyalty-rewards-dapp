@@ -394,7 +394,7 @@ const Registration: FunctionComponent<RegistrationProps> = ({
   };
 
   const getWalletIdentifier = () => {
-    const [wallet] = supportedCardanoWallets.filter((item) => item.wallet === cardanoWalletName);
+    const [wallet] = supportedCardanoWallets.filter((item) => item.wallet.toLowerCase() === cardanoWalletName.toLowerCase());
     return wallet?.identifier || '';
   };
 
